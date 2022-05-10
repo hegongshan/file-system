@@ -24,33 +24,25 @@
       relativePath: true,
       loadSidebar: true,
       subMaxLevel: 3,
-
+      
       search: {
-      	paths: 'auto',
-	placeholder: '🔍 搜索'
+        paths: 'auto',
+        placeholder: '🔍 搜索'
       },
 
       copyCode: {
-	buttonText: '点击复制',
+        buttonText: '点击复制',
         errorText: '错误',
-	successText: '已复制'	
+        successText: '已复制'	
       }
     };
-    const gitalk = new Gitalk({
-      clientId: 'c8496da04fc0dde2720d',
-      clientSecret: '7f22183526df133f59c20cc5fa2c44c9443b9b43',
-      repo: 'https://github.com/hegongshan/file-system',
-      owner: 'hegongshan',
-    });
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
- 
+
   <!-- plugins -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 
   <!-- code highlight -->
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
@@ -58,5 +50,17 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script>  
+
+  <!-- comment plugin --> 
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <script> 
+    const gitalk = new Gitalk({
+      clientId: 'c8496da04fc0dde2720d',
+      clientSecret: '7f22183526df133f59c20cc5fa2c44c9443b9b43',
+      repo: 'https://github.com/hegongshan/file-system',
+      owner: 'hegongshan',
+    });
+  </script> 
 </body>
 </html>
