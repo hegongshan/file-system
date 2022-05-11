@@ -4,6 +4,8 @@
       * [mklost+found](/mklost+found.md)
   * 用户态文件系统
     * [FUSE](/fuse.md)
+  * 常用命令
+    * [LVM](/linux-lvm.md)
 * 分布式文件系统
   * 可靠性
     * [复制](/replication.md)
@@ -13,3 +15,5 @@
   * 开源系统
     * Ceph
       * [RADOS bench](/ceph-rados-bench.md)
+* 测试工具
+    * [fio](/fio.md)

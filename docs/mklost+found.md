@@ -34,7 +34,7 @@ if (mkdir (LPF, 0700) == -1) {
 
 
 
-![创建文件](img/mklost+found_creat.png)
+![创建文件](img/mklost+found_creat.png "创建文件")
 
 3.删除创建的文件
 

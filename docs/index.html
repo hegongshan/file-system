@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
   <style type="text/css">
   	.markdown-section > p {
-	    font-size: 18px;
+	    font-size: 15px;
 	}
   </style>
 </head>
@@ -25,7 +25,8 @@
       relativePath: true,
       loadSidebar: true,
       subMaxLevel: 3,
-      
+      auto2top: true,
+
       search: {
         paths: 'auto',
         placeholder: '🔍 搜索'
@@ -36,26 +37,40 @@
         errorText: '错误',
         successText: '已复制'	
       },
+
       pagination: {
         previousText: '上一章节',
         nextText: '下一章节',
         crossChapter: true,
         crossChapterText: true,
       },
-        count:{
+      
+      count: {
         countable: true,
         position: 'top',
         margin: '10px',
         float: 'right',
-        fontsize:'0.9em',
-        color:'rgb(90,90,90)',
-        language:'chinese',
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese',
         /*localization: {
             words: "",
             minute: ""
         },*/
         isExpected: true
-        }
+      },
+      /*progress: {
+        position: "top",
+        color: "var(--theme-color,#42b983)",
+        height: "3px",
+      },*/
+      scrollToTop: {
+        auto: true,
+        text: '↑',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
     };
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
@@ -66,15 +81,15 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
-
+  <script src="//cdn.jsdelivr.net/gh/h-hg/docsify-image-caption/dist/docsify-image-caption.min.js"></script>
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
+  
   <!-- code highlight -->
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script>  
 
   <!-- comment plugin --> 
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
