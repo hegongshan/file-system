@@ -60,9 +60,9 @@ rados -p <pool> bench <seconds> write|seq|rand
 | :----------: | :------------------: | :--------------------------: | :--------------------------: | :----------------------: | :------------: | :----------------------: | :----------------------: |
 | 当前是第几秒 | 正在执行的并发IO数量 | 累计至当前时刻已发出的请求数 | 累计至当前时刻已完成的请求数 | 累计至当前时刻的平均带宽 | 当前秒内的带宽 | 当前秒内最后一次IO的延迟 | 累计至当前时刻的平均延迟 |
 
-测试结束后，rados bench会计算三类指标：带宽、IOPS、延迟。
+测试结束后，radosbench会计算三类指标：带宽、IOPS、延迟。
 
-对于每类指标，rados bench会输出四个值，分别为平均值、标准差、最大值、最小值。
+对于每类指标，radosbench会输出四个值，分别为平均值、标准差、最大值、最小值。
 
 以平均值为例，计算方法如下所示：
 
@@ -159,7 +159,7 @@ rados -p test-rados cleanup --run-time test
 
 * **问题1：对于读操作，为什么指定`--run_name`后就能读取到之前写入的数据？**
 
-答：写测试结束后，rados会创建一个名为`run_name`的对象，用于记录**本次测试**的元数据（每执行一次写测试，对象中存储的数据就会更新一次）。
+答：写测试结束后，radosbench会创建一个名为`run_name`的对象，用于记录**本次测试**的元数据（每执行一次写测试，对象中存储的数据就会更新一次）。
 
 该对象依次记录了测试设置的对象大小（long型，占8个字节）、执行的写入次数（int型，占4个字节）、测试进程的PID（int型，占4个字节）以及块大小（long型，占8个字节），如下所示（代码位于`src/common/obj_bencher.cc/ObjBencher::write_bench`中）：
 
@@ -176,13 +176,7 @@ sync_write(run_name_meta, b_write, sizeof(int)*3);
 
 在测试时，创建的对象则采用`benchmark_data_{hostname}_{pid}_object{objnum}`作为命名格式。
 
-对于读操作，只需要读取`run_name`对象中存储的数据，就可以得到上述信息，进而读取上一次写入的数据。
-
-* **问题2：对于写操作，添加选项`--reuse-bench`，重用的东西到底是什么？**
-
-答：添加选项`--reuse-bench`，表明使用`run_name`对象中存储的块大小（对象大小）作为测试的块大小（对象大小），使用存储的进程PID格式化写入对象的名称。此时，`-b`和`-O`选项将会失效。
-
-为了验证问题1，首先执行一个写测试，将块大小设置为16M：
+对于读操作，只需要读取`run_name`对象中存储的数据，就可以得到上述信息，进而读取上一次写入的数据。为了验证问题1，首先执行一个写测试，将块大小设置为16M：
 
 ```bash
 [root@hgs ~]# rados -p test-rados bench 10 write -b 16M --run-name test --no-cleanup 
@@ -203,7 +197,7 @@ test
 186
 ```
 
-输出结果表明：rados确实创建了名为`test`的对象和指定名称的186个对象。
+输出结果表明：radosbench确实创建了名为`test`的对象和指定名称的186个对象。
 
 接着，使用如下命令导出test对象中存储的数据：
 
@@ -229,6 +223,42 @@ $$
 \end{aligned}
 $$
 这与设置的对象大小（块大小）、执行的写入次数以及测试进程的PID是一致的。
+
+
+
+* **问题2：对于写操作，添加选项`--reuse-bench`，重用的东西到底是什么？**
+
+答：添加选项`--reuse-bench`，表明使用`run_name`对象中存储的块大小（对象大小）作为测试的块大小（对象大小），使用存储的进程PID格式化写入对象的名称。此时，`-b`和`-O`选项将会失效，如下所示（代码位于`src/common/obj_bencher.cc/ObjBencher::aio_bench`）：
+
+```bash
+//get data from previous write run, if available
+if (operation != OP_WRITE || reuse_bench) {
+    uint64_t prev_op_size, prev_object_size;
+    r = fetch_bench_metadata(run_name_meta, &prev_op_size, &prev_object_size,
+			     &num_ops, &num_objects, &prev_pid);
+    if (r < 0) {
+      if (r == -ENOENT) {
+        if (reuse_bench)
+          cerr << "Must write data before using reuse_bench for a write benchmark!" << std::endl;
+        else
+          cerr << "Must write data before running a read benchmark!" << std::endl;
+      }
+      return r;
+    }
+    object_size = prev_object_size;   
+    op_size = prev_op_size;           
+}
+```
+
+* **问题3：在设置访问模式时，对于读测试，可以指定采用顺序读还是随机读，而写测试却只有一个模式write，它到底是顺序写还是随机写呢？**
+
+答：与文件不同，对象作为一个整体，其内部只支持顺序访问。
+
+1.当执行顺序读（seq）时，radosbench会按照对象名从小到大的顺序依次读取所有对象。是否读完所有对象和运行时间是否结束，二者均可以作为终止条件；
+
+2.当执行随机读（rand）时，radosbench会随机选择要读取的对象（可能会重复读取同一个对象），直到运行时间结束。
+
+3.当执行写（write）操作时，radosbench会按照对象名从小到大的顺序依次写入。
 
 参考资料
 
