@@ -9,9 +9,14 @@ rados -p <pool> bench <seconds> write|seq|rand
 
 ### 参数说明
 
+必要的选项：
+
 * `-p pool_name`：设置测试使用的存储池；
 * `<seconds>`：设置测试的运行时间，在读测试中，如果数据已经全部读完，测试将会提前结束；
 * `write|seq|rand`：write表示写操作，seq表示顺序读，rand表示随机读；
+
+可选的选项：
+
 * `-t concurrent_operations`：设置并发IO操作的数量，默认为16；
 * `--run-name run_name`：设置测试的名称，默认为`benchmark_last_metadata`。在写测试中，用于标识当前的测试；在读测试中，用于指定需要读取的数据。
 * `--show-time`：在输出的内容前添加时间信息。
@@ -29,7 +34,7 @@ rados -p <pool> bench <seconds> write|seq|rand
 
 * `--max-objects`: 设置写操作的最大对象数；
 * `--no-cleanup`：写完以后，不要删除测试数据。默认情况下，写完数据后，会自动删除测试数据。
-* `--reuse-bench`：重用上一次的写bench。添加该选项后，`-b`和`-O`选项将会失效。关于该选项的说明，参见[一些疑问](#一些疑问)。
+* `--reuse-bench`：重用上一次的写bench。关于该选项的说明，参见[一些疑问](#一些疑问)。
 
 如果在读操作中设置了以上三个选项，将会被忽略。
 
@@ -49,7 +54,7 @@ rados -p <pool> bench <seconds> write|seq|rand
 
 ### 结果说明
 
-在测试的过程中，每秒都会输出实时数据：
+在测试的过程中，每秒都会输出如下格式的实时数据：
 
 |     sec      |       Cur ops        |           started            |           finished           |         avg MB/s         |    cur MB/s    |       last lat(s)        |        avg lat(s)        |
 | :----------: | :------------------: | :--------------------------: | :--------------------------: | :----------------------: | :------------: | :----------------------: | :----------------------: |
@@ -173,11 +178,11 @@ sync_write(run_name_meta, b_write, sizeof(int)*3);
 
 对于读操作，只需要读取`run_name`对象中存储的数据，就可以得到上述信息，进而读取上一次写入的数据。
 
-* **问题2：对于写操作，添加`--reuse-bench`选项有什么作用？**
+* **问题2：对于写操作，添加选项`--reuse-bench`，重用的东西到底是什么？**
 
-对于写操作，添加选项`--reuse-bench`，表明使用`run_name`对象中存储的块大小作为测试的块大小，使用存储的进程PID格式化写入对象的名称。
+答：添加选项`--reuse-bench`，表明使用`run_name`对象中存储的块大小（对象大小）作为测试的块大小（对象大小），使用存储的进程PID格式化写入对象的名称。此时，`-b`和`-O`选项将会失效。
 
-为了验证上述情况，首先执行一个写测试，将块大小设置为16M：
+为了验证问题1，首先执行一个写测试，将块大小设置为16M：
 
 ```bash
 [root@hgs ~]# rados -p test-rados bench 10 write -b 16M --run-name test --no-cleanup 
