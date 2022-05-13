@@ -5,8 +5,9 @@
   * 用户态文件系统
     * [FUSE](/fuse.md)
   * 常用命令
+    * [RAID](/linux-raid.md)
     * [LVM](/linux-lvm.md)
-* 分布式文件系统
+* [分布式文件系统](/distributed-file-system.md)
   * 可靠性
     * [复制](/replication.md)
     * 纠删码

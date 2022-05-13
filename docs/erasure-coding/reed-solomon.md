@@ -47,3 +47,7 @@ A^\prime \times D = R^\prime\\
 D= (A^\prime)^{-1}R^\prime
 $$
 
+参考文献
+
+[1] Polynomial Codes Over Certain Finite Fields, *Journal of the society for industrial and applied mathematics*, 1960
+
