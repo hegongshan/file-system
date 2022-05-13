@@ -4,7 +4,7 @@ Ceph提供了RADOS测试工具：
 rados -p <pool> bench <seconds> write|seq|rand 
 [-b block_size] [-O object_size] [--max-objects num] 
 [--show-time] [--no-verify] [--write-object] [--write-omap] [--write-xattr]
-[-t concurrent_operations] [--no-cleanup] [--run-name run_name] [--no-hints] [--reuse-bench]
+[-t concurrent_operations] [--no-cleanup] [--run-name run_name] [--reuse-bench]
 ```
 
 ### 参数说明
@@ -145,7 +145,7 @@ Max latency(s):       3.62436
 Min latency(s):       0.0784325
 ```
 
-顺序写只花费了5.5s就读完了全部的数据。
+顺序读只花费了5.5s就读完了全部的数据。
 
 #### 删除测试数据
 
