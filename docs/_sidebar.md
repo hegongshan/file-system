@@ -11,6 +11,7 @@
   * 常用命令
     * [RAID](/linux-raid.md)
     * [LVM](/linux-lvm.md)
+    * [挂载与卸载](/mount.md)
   
 * [分布式文件系统](/distributed-file-system.md)
   * [网络文件系统](/network-file-system.md)
