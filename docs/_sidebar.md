@@ -20,6 +20,7 @@
     * 纠删码
       * [Reed Solomon编码](/erasure-coding/reed-solomon.md)
       * [LRC编码](/erasure-coding/locally-repairable-code.md)
+      * [再生码](/erasure-coding/regenerating-code.md)
   * 开源系统
     * Ceph
       * [RADOS bench](/ceph-rados-bench.md)
