@@ -1,4 +1,8 @@
-挂载与卸载
+### 格式化
+
+```bash
+mkfs [options] [-t type] [fs-options] device [size]
+```
 
 ### 挂载
 

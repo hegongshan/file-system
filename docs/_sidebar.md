@@ -1,17 +1,21 @@
+* 存储设备
+  * 设备管理
+    * [设备检测](/linux-disk-check-tool.md)
+    * [设备分区](/disk-partition.md)
+    * [RAID](/linux-raid.md)
+    * [LVM](/linux-lvm.md)
 * 本地文件系统
   * 内核文件系统
     * e2fsprog
       * [mklost+found](/mklost+found.md)
-    
+    * [Ext2](/file-system-ext2.md) 
   * 用户态文件系统
     * [FUSE](/fuse.md)
   * 文件系统Lab    
     * [Lab1: NYU CS202 File System](/nyu-cs202-file-system-lab.md)
     
   * 常用命令
-    * [RAID](/linux-raid.md)
-    * [LVM](/linux-lvm.md)
-    * [挂载与卸载](/mount.md)
+    * [文件系统的使用](/file-system-usage.md)
   
 * [分布式文件系统](/distributed-file-system.md)
   * [网络文件系统](/network-file-system.md)
