@@ -1,13 +1,19 @@
 Ceph提供了RADOS测试工具：
 
 ```bash
-rados -p <pool> bench <seconds> write|seq|rand 
-[-b block_size] [-O object_size] [--max-objects num] 
-[--show-time] [--no-verify] [--write-object] [--write-omap] [--write-xattr]
-[-t concurrent_operations] [--no-cleanup] [--run-name run_name] [--reuse-bench]
+rados [-c conf] [-k keyring] -p <pool> bench <seconds> write|seq|rand 
+[-t concurrent_operations] [--run-name run_name] [--show-time] 
+[-b block_size] [-O object_size] [--max-objects num] [--no-cleanup] [--reuse-bench] 
+[--write-object] [--write-omap] [--write-xattr] 
+[--no-verify]
 ```
 
 ### 参数说明
+
+Ceph相关选项：
+
+* `-c conf`：设置Ceph的配置文件，文件指定了集群中mon的地址，默认为`/etc/ceph/ceph.conf`。
+* `-k keyring`：设置秘钥环。默认从`/etc/ceph/`目录下读取，例如，`/etc/ceph/ceph.client.admin.keyring`。
 
 必要的选项：
 
@@ -23,8 +29,8 @@ rados -p <pool> bench <seconds> write|seq|rand
 
 写操作特有的选项：
 
-* `-b`：设置块大小，默认为4 MB。若对象大小<块大小，则块大小被设置为对象大小；
-* `-O`：设置对象大小。如果没有设置，则等于块大小；
+* `-b block_size`：设置块大小，默认为4 MB。若对象大小<块大小，则块大小被设置为对象大小；
+* `-O object_size`：设置对象大小。如果没有设置，则等于块大小；
 
 如果在读操作中设置了以上两个选项，将产生如下错误：
 
@@ -32,15 +38,15 @@ rados -p <pool> bench <seconds> write|seq|rand
 -b|--block_size option can be used only with 'write' bench test
 ```
 
-* `--max-objects`: 设置写操作的最大对象数；
+* `--max-objects num`: 设置写操作的最大对象数；
 * `--no-cleanup`：写完以后，不要删除测试数据。默认情况下，写完数据后，会自动删除测试数据。
 * `--reuse-bench`：重用上一次的写bench。关于该选项的说明，参见[一些疑问](#一些疑问)。
 
 如果在读操作中设置了以上三个选项，将会被忽略。
 
-* `--write-object`：将内容写到对象中
-* `--write-omap`：将内容写到omap中
-* `--write-xattr`：将内容写到扩展属性中
+* `--write-object`：写到对象中。默认情况下，rados会写对象。
+* `--write-omap`：写到omap中。
+* `--write-xattr`：写到扩展属性中。
 
 如果在读操作中设置了以上三个选项，将产生如下错误：
 
@@ -80,6 +86,21 @@ $$
 $$
 
 ### 动手实践
+
+#### 创建存储池
+
+```bash
+ceph osd pool create test-rados 256 256
+```
+
+#### 清除缓存
+
+每次执行测试前，都应该先清除缓存
+
+```bash
+sudo sync && sudo echo 3 > /proc/sys/vm/drop_caches
+```
+
 #### 写测试
 
 ```bash
@@ -149,10 +170,22 @@ Min latency(s):       0.0784325
 
 #### 删除测试数据
 
-删除`run_name`中的所有数据：
+```bash
+rados -p <pool> cleanup [--run-name run_name] [--prefix prefix]
+```
+
+* `--prefix`：设置需要删除的对象名前缀，默认为`benchmark_data_{hostname}`。
+
+1.删除`run_name`中的所有数据：
 
 ```bash
-rados -p test-rados cleanup --run-time test
+rados -p test-rados cleanup --run-name test-rados
+```
+
+2.删除存储池
+
+```bash
+ceph osd pool rm test-rados test-rados --yes-i-really-really-mean-it
 ```
 
 ### 一些疑问
@@ -259,6 +292,14 @@ if (operation != OP_WRITE || reuse_bench) {
 2.当执行随机读（rand）时，radosbench会随机选择要读取的对象（可能会重复读取同一个对象），直到运行时间结束。
 
 3.当执行写（write）操作时，radosbench会按照对象名从小到大的顺序依次写入。
+
+* **问题4：当使用多个客户端进行测试时，如果客户端A先执行写测试，然后客户端B再去读取A写入的数据，B无法从存储池中正确读取数据。**
+
+对象采用`benchmark_data_{hostname}_{pid}_object{objnum}`的命名格式，不同客户端的主机名并不相同。
+
+当客户端A写入对象时，对象名中的hostname使用的是A的主机名；
+
+当客户端B读取对象时，它将使用自己的hostname格式化对象名，从而导致读取失败。
 
 参考资料
 
