@@ -26,7 +26,7 @@
       * [LRC编码](/erasure-coding/locally-repairable-code.md)
       * [再生码](/erasure-coding/regenerating-code.md)
   * 开源系统
-    * Ceph
+    * [Ceph](/ceph-install.md)
       * [RADOS bench](/ceph-rados-bench.md)
   
 * 测试工具
