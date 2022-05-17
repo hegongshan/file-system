@@ -15,3 +15,22 @@ mount -t type device dir
 ```bash
 umount {dir|device}
 ```
+
+开机自动挂载
+
+```bash
+vim /etc/fstab
+```
+### SWAP分区
+
+#### 格式化SWAP
+
+```bash
+mkswap <device>
+```
+
+
+
+参考文献
+
+[1] 刘遄,《Linux就该这样学》,人民邮电出版社
