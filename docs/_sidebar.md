@@ -28,10 +28,11 @@
       * [再生码](/erasure-coding/regenerating-code.md)
   * 开源系统
     * [Ceph](/ceph-install.md)
-      * [RADOS bench](/ceph-rados-bench.md)	
+        * [Cluster Map工具](/ceph-cluster-map.md)  
+        * [RADOS bench](/ceph-rados-bench.md)	
 * 测试工具
-    * [fio](/fio.md)
-    * [filebench](/filebench.md)
+    * [FIO](/fio.md)
+    * [Filebench](/filebench.md)
     * [mdtest](/mdtest.md)
 
 * [重要会议](/conference.md)

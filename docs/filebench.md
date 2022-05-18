@@ -4,9 +4,9 @@ Filebench是一种文件系统和存储测试工具，可以生成大量的工�
 
 2002年，SUN公司开发了Filebench，并于2005年公开了源代码。
 
-在SUN公司停止开发后，石溪大学的文件系统和存储实验室获得了许可，由他们负责继续开发和维护<sup><a href="#ref-1" style="border:none">[1]</a></sup>。
+在SUN公司停止开发后，石溪大学的文件系统和存储实验室获得了许可，由他们负责继续开发和维护<sup>[[1]](#ref-1)</sup>。
 
-根据谷歌学术的统计结果，有超过500篇论文使用Filebench作为测试工具<sup><a href="#ref-2" style="border:none">[2]</a></sup>。
+根据谷歌学术的统计结果，有超过500篇论文使用Filebench作为测试工具<sup>[[2]](#ref-2)</sup>。
 
 ### 安装Filebench
 
@@ -71,7 +71,7 @@ filebench -f mywebserver.f
 
 ### 测试结果说明
 
-Filebench的测试结果在wiki中有较为详细的说明<sup><a href="#ref-3" style="border:none">[3]</a></sup>，对应的代码位于`stats.c`中。
+Filebench的测试结果在wiki中有较为详细的说明<sup>[[3]](#ref-3)</sup>，对应的代码位于`stats.c`中。
 
 1.每个操作的输出代码如下所示：
 
