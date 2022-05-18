@@ -1,4 +1,4 @@
-FAST（USENIX Conference on File and Storage Technologies）创办于2002年，是文件系统领域的顶级会议，通常在每年的2月下旬举办。
+USENIX Conference on File and Storage Technologies (FAST) 创办于2002年，是文件系统领域的顶级会议，通常在每年的2月下旬举办。
 
 1.打开会议主页，找到Front Matter
 

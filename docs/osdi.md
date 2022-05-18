@@ -1,4 +1,4 @@
-OSDI（USENIX Symposium on Operating Systems Design and Implementation）创办于1994年。
+USENIX Symposium on Operating Systems Design and Implementation (OSDI) 创办于1994年。
 
 最初是两年一届，每逢偶数年举办一次；从2021年开始，改成每年一届。
 
