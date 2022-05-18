@@ -1,6 +1,7 @@
 * 存储设备
   * 设备管理
-    * [设备检测](/linux-disk-check-tool.md)
+    * [设备查看](/disk-list.md)
+    * [设备检测](/disk-check.md)
     * [设备分区](/disk-partition.md)
     * [RAID](/linux-raid.md)
     * [LVM](/linux-lvm.md)
@@ -27,9 +28,12 @@
       * [再生码](/erasure-coding/regenerating-code.md)
   * 开源系统
     * [Ceph](/ceph-install.md)
-      * [RADOS bench](/ceph-rados-bench.md)
-  
+      * [RADOS bench](/ceph-rados-bench.md)	
 * 测试工具
     * [fio](/fio.md)
     * [filebench](/filebench.md)
     * [mdtest](/mdtest.md)
+
+* [重要会议](/conference.md)
+    * [FAST](/fast.md)
+    * [OSDI](/osdi.md)
