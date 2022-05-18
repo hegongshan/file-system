@@ -37,4 +37,6 @@
 
 * [重要会议](/conference.md)
     * [FAST](/fast.md)
+    * [SOSP](/sosp.md)
     * [OSDI](/osdi.md)
+    * [ATC](/atc.md)
