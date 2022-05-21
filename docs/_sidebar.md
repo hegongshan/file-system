@@ -29,7 +29,9 @@
   * 开源系统
     * [Ceph](/ceph-install.md)
         * [Cluster Map工具](/ceph-cluster-map.md)  
-        * [RADOS bench](/ceph-rados-bench.md)	
+        * [RADOS bench](/ceph-rados-bench.md)
+        * [RBD bench](/ceph-rbd-bench.md)
+
 * 测试工具
     * [FIO](/fio.md)
     * [Filebench](/filebench.md)
