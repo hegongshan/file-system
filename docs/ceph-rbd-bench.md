@@ -49,33 +49,13 @@ start_pos = i * io_size;
 
 ### 结果说明
 
-```c++
-  std::cout << "bench "
-       << " type " << (io_type == IO_TYPE_READ ? "read" :
-                       io_type == IO_TYPE_WRITE ? "write" : "readwrite")
-       << (io_type == IO_TYPE_RW ? " read:write=" +
-           std::to_string(read_proportion) + ":" +
-	   std::to_string(100 - read_proportion) : "")
-       << " io_size " << io_size
-       << " io_threads " << io_threads
-       << " bytes " << io_bytes
-       << " pattern ";
-  switch (io_pattern) {
-  case IO_PATTERN_RAND:
-    std::cout << "random";
-    break;
-  case IO_PATTERN_SEQ:
-    std::cout << "sequential";
-    break;
-  case IO_PATTERN_FULL_SEQ:
-    std::cout << "full sequential";
-    break;
-  default:
-    ceph_assert(false);
-    break;
-  }
-  std::cout << std::endl;
-```
+在测试的过程中，每秒都会输出如下格式的实时数据：
+
+|     SEC      |             OPS              |    OPS/SEC     |   BYTES/SEC    |
+| :----------: | :--------------------------: | :------------: | :------------: |
+| 当前是第几秒 | 累计至当前时刻已完成的请求数 | 当前秒内的IOPS | 当前秒内的带宽 |
+
+测试结束后，rbdbench会输出平均IOPS和平均带宽。
 
 ### 动手实践
 
@@ -104,11 +84,13 @@ bench  type write io_size 4096 io_threads 16 bytes 1073741824 pattern sequential
 elapsed: 10   ops: 262144   ops/sec: 23917.8   bytes/sec: 93 MiB/s
 ```
 
+### 一些疑问
+
 #### 如何实现混合读写
 
 通过随机函数来判断本次操作应该要执行读操作，还是写操作：
 
-```c++
+```C++
 bool should_read(uint64_t read_proportion)
 {
   uint64_t rand_num = rand() % 100;
@@ -119,6 +101,80 @@ bool should_read(uint64_t read_proportion)
     return false;
 }
 ```
+
+#### 如何处理带单位B/K/M/T...的参数？
+
+rbd使用boost的`program_options`来解析命令行参数。`program_options`使用`validate`函数将参数转换为C++类型，rbd bench重载了该函数。
+
+重载的validate函数又调用了
+
+```
+src/tools/rbd/action/Bench.cc/validate -> 
+src/common/strtol.cc/strict_iecstrtoll -> 
+src/common/strtol.cc/strict_iec_cast
+```
+
+删除异常处理代码，strict_iec_cast可以简化为：
+
+```c
+template<typename T>
+T strict_iec_cast(std::string_view str, std::string *err) {
+    size_t u = str.find_first_not_of("0123456789-+");
+    int m = 0;
+
+    n = str.substr(0, u);
+    unit = str.substr(u, str.length() - u);
+    // we accept both old si prefixes as well as the proper iec prefixes
+    // i.e. K, M, ... and Ki, Mi, ...  
+    switch(unit.front()) {
+      case 'K': m = 10; break;
+      case 'M': m = 20; break;
+      case 'G': m = 30; break;
+      case 'T': m = 40; break;
+      case 'P': m = 50; break;
+      case 'E': m = 60; break;
+      case 'B': break;
+      default:
+        *err = "strict_iecstrtoll: unit prefix not recognized";
+        return 0;
+    }  
+    long long ll = strtoll(str.data(), &endptr, base);
+
+    return (ll << m);
+}
+```
+
+#### 如何处理输出结果中的单位？
+
+```c
+std::cout << "elapsed: " << (int)elapsed.count() << "   "
+            << "ops: " << ios << "   "
+            << "ops/sec: " << (double)ios / elapsed.count() << "   "
+            << "bytes/sec: " << byte_u_t((double)off / elapsed.count()) << "/s"
+            << std::endl;
+```
+
+`byte_u_t`定义在`src/include/types.h`中，其重载了流插入运算符：
+
+```c
+inline std::ostream& operator<<(std::ostream& out, const byte_u_t& b)
+{
+    uint64_t n = b.v;
+    int index = 0;
+    const char* u[] = {" B", " KiB", " MiB", " GiB", " TiB", " PiB", " EiB"};
+
+    while (n >= 1024 && index < 7) {
+      n /= 1024;
+      index++;
+    }
+
+    return format_u(out, b.v, n, index, 1ULL << (10 * index), u[index]);
+}
+```
+
+
+
+
 
 参考资料
 
