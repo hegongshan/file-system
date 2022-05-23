@@ -233,12 +233,6 @@ ceph health [detail]
 ceph orch ps
 ```
 
-4.查看集群中的服务
-
-```shell
-ceph orch lsceph
-```
-
 ### 测试读写
 
 1.挂载前的准备

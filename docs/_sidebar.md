@@ -1,5 +1,6 @@
 * 存储设备
   * 设备管理
+    * [数据存储单位](/data-storage-unit.md)
     * [设备查看](/disk-list.md)
     * [设备检测](/disk-check.md)
     * [设备分区](/disk-partition.md)
@@ -12,8 +13,9 @@
     * [Ext2](/file-system-ext2.md) 
   * 用户态文件系统
     * [FUSE](/fuse.md)
-  * 文件系统Lab    
-    * [Lab1: NYU CS202 File System](/nyu-cs202-file-system-lab.md)
+  * 文件系统Lab
+    * [Lab1: NYU CS202 ls](/nyu-cs202-lab-ls.md)
+    * [Lab2: NYU CS202 File System](/nyu-cs202-lab-file-system.md)
     
   * 常用命令
     * [文件系统的使用](/file-system-usage.md)

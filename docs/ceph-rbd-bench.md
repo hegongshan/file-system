@@ -11,39 +11,97 @@ rbd bench [--pool <pool>] [--namespace <namespace>] [--image <image>]
 可选参数
 
 * `--pool <pool>`：设置测试使用的存储池
-
+* `--namespace <namespace>`：设置测试使用的命名空间
 * `--image <image>`：设置测试使用的块设备
+* `--io-size <io-size>`：设置块大小的字节数，默认为4K，单位为B/K/M/G，最大为4G。
 
-* `--io-size <io-size>`：设置块大小的字节数，默认为4K。单位为B/K/M/G。最大为4G。
-* `--io-threads <io-threads>`：测试使用的线程数，默认为16。
-* `--io-total <io-total>`：读写的总大小，默认为1G。单位为 B/K/M/G/T。
-* `--io-pattern <io-pattern>`：设置IO访问模式，如随机`rand`、顺序`seq`以及`full-seq`。默认为`seq`。
+$$
+1 << 32 B = 4G
+$$
 
-rand：随机选择
+* `--io-threads <io-threads>`：设置测试使用的线程数，默认为16。
+* `--io-total <io-total>`：设置读写的总大小，单位为 B/K/M/G/T。默认为1G。
+* `--io-pattern <io-pattern>`：设置IO访问模式，如随机`rand`、顺序`seq`以及完全顺序`full-seq`。默认为`seq`。
 
-```c++
-start_pos = (rand() % (size / io_size)) * io_size;
-```
+rand：随机读写一个块
 
-seq：
+seq：顺序读写
 
-```c++
+1.首先，将RBD划分为大小相等的Chunk，每个线程处理一个Chunk；
+
+2.然后，当剩下的部分无法为每个线程分配一个Chunk时，则让每个线程处理一个块；
+
+3.当后续没有块时，回到初始位置。
+
+![IO模式](/img/ceph-rbd-bench-io-pattern.png)
+
+full-seq：每个线程一次处理一个块，n个线程依次往后读写
+
+<!-- tabs:start -->
+
+### **初始值**
+
+```c
 uint64_t seq_chunk_length = (size / io_size / io_threads) * io_size;
-
-start_pos = seq_chunk_length * i;
+// disturb all thread's offset
+for (i = 0; i < io_threads; i++) {
+    uint64_t start_pos = 0;
+    switch (io_pattern) {
+        case IO_PATTERN_RAND:
+            start_pos = (rand() % (size / io_size)) * io_size;
+            break;
+        case IO_PATTERN_SEQ:
+            start_pos = seq_chunk_length * i;
+            break;
+        case IO_PATTERN_FULL_SEQ:
+            start_pos = i * io_size;
+            break;
+        default:
+            break;
+    }
+    thread_offset.push_back(start_pos);
+}
 ```
 
-full-seq
+### **下一个值**
 
-```c++
-start_pos = i * io_size;
+```c
+// Set the thread_offsets of next I/O
+for (i = 0; i < io_threads; ++i) {
+    switch (io_pattern) {
+        case IO_PATTERN_RAND:
+            thread_offset[i] = (rand() % (size / io_size)) * io_size;
+            continue;
+        case IO_PATTERN_SEQ:
+            if (off < (seq_chunk_length * io_threads)) {
+                thread_offset[i] += io_size;
+            } else {
+                // thread_offset is adjusted to the chunks unassigned to threads.
+                thread_offset[i] = off + (i * io_size);
+            }
+            if (thread_offset[i] + io_size > size) {
+                thread_offset[i] = seq_chunk_length * i;
+            }
+            break;
+        case IO_PATTERN_FULL_SEQ:
+            thread_offset[i] += (io_size * io_threads);
+            if (thread_offset[i] >= size) {
+                thread_offset[i] = i * io_size;
+            }
+            break;
+        default:
+            break;
+    }
+}
 ```
 
-* `--rw-mix-read <rw-mix-read>`：设置混合读写中读操作的比例，默认为50，即一半读一半写。
+<!-- tabs:end -->
 
-* `--io-type <io-type>`：设置IO类型，可选值有`read`、`write`以及`readwrite`(`rw`)。
+* `--rw-mix-read <rw-mix-read>`：设置混合读写中读操作的比例，默认为50，即一半读一半写。该选项只在混合读写时有效。
 
 位置参数
+
+* `--io-type <io-type>`：设置IO类型，可选值有`read`、`write`以及`readwrite`(`rw`)。
 
 * `<image-spec>`：`[<pool-name>/[<namespace>/]]<image-name>`
 
@@ -106,7 +164,7 @@ bool should_read(uint64_t read_proportion)
 
 rbd使用boost的`program_options`来解析命令行参数。`program_options`使用`validate`函数将参数转换为C++类型，rbd bench重载了该函数。
 
-重载的validate函数又调用了
+重载的`validate`函数又调用了
 
 ```
 src/tools/rbd/action/Bench.cc/validate -> 
@@ -114,7 +172,7 @@ src/common/strtol.cc/strict_iecstrtoll ->
 src/common/strtol.cc/strict_iec_cast
 ```
 
-删除异常处理代码，strict_iec_cast可以简化为：
+删除异常处理代码后，`strict_iec_cast`可以简化为：
 
 ```c
 template<typename T>
@@ -154,7 +212,7 @@ std::cout << "elapsed: " << (int)elapsed.count() << "   "
             << std::endl;
 ```
 
-`byte_u_t`定义在`src/include/types.h`中，其重载了流插入运算符：
+输出结果的单位处理使用了结构体`byte_u_t`。它定义在`src/include/types.h`中，重载了流插入运算符：
 
 ```c
 inline std::ostream& operator<<(std::ostream& out, const byte_u_t& b)
@@ -171,10 +229,6 @@ inline std::ostream& operator<<(std::ostream& out, const byte_u_t& b)
     return format_u(out, b.v, n, index, 1ULL << (10 * index), u[index]);
 }
 ```
-
-
-
-
 
 参考资料
 
