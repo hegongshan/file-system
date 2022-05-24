@@ -19,23 +19,37 @@ $$
 1 << 32 B = 4G
 $$
 
-* `--io-threads <io-threads>`：设置测试使用的线程数，默认为16。
-* `--io-total <io-total>`：设置读写的总大小，单位为 B/K/M/G/T。默认为1G。
-* `--io-pattern <io-pattern>`：设置IO访问模式，如随机`rand`、顺序`seq`以及完全顺序`full-seq`。默认为`seq`。
+* `--io-threads <io-threads>`：设置测试使用的线程数，默认值为16。
+* `--io-total <io-total>`：设置读写的总大小，单位为B/K/M/G/T。其可以大于RBD的大小，默认值为1G
+* `--io-pattern <io-pattern>`：设置IO访问模式，可选的值有随机`rand`、顺序`seq`以及完全顺序`full-seq`。默认为`seq`。
 
 rand：随机读写一个块
 
 seq：顺序读写
 
-1.首先，将RBD划分为大小相等的Chunk，每个线程处理一个Chunk；
+步骤1，将RBD划分为大小相等的Chunk，每个线程处理一个Chunk；
 
-2.然后，当剩下的部分无法为每个线程分配一个Chunk时，则让每个线程处理一个块；
+步骤2，当剩下的部分无法为每个线程分配一个Chunk时，则让每个线程处理一个块；若剩下的部分不足一个块，则让线程重新去处理Chunk中的第一个块；
 
-3.当后续没有块时，回到初始位置。
+步骤3，若RBD处理完后，测试还未结束，即测试总大小>RBD大小，则让每个线程处理各自Chunk中的第一个块。
 
-![IO模式](/img/ceph-rbd-bench-io-pattern.png)
+例如，假设RBD的大小为15.5个块，测试总大小>RBD大小，使用4个线程进行测试，Chunk=15.5/4=3个块：
 
-full-seq：每个线程一次处理一个块，n个线程依次往后读写
+![步骤1](/img/ceph-rbd-bench-io-pattern-seq-step1.png)
+
+当线程执行完各自的Chunk后，RBD只剩下3.5个块，无法为第4个线程分配一个块，此时让第4个线程重新处理Chunk中的第一个块。
+
+![步骤2](/img/ceph-rbd-bench-io-pattern-seq-step2.png)
+
+虽然RBD已经被处理完，但测试仍未结束，此时让每个线程不停地处理各自Chunk中的第一个块，直至测试结束。
+
+![步骤2](/img/ceph-rbd-bench-io-pattern-seq-step3.png)
+
+full-seq：n个线程依次处理每一个块
+
+首先，第1个线程处理第1个块，第2个线程处理第2个块，...，第n个线程处理第n个块；
+
+然后，第1个线程处理第n+1个快，...，第n个线程处理第2n个块。
 
 <!-- tabs:start -->
 
@@ -101,7 +115,7 @@ for (i = 0; i < io_threads; ++i) {
 
 位置参数
 
-* `--io-type <io-type>`：设置IO类型，可选值有`read`、`write`以及`readwrite`(`rw`)。
+* `--io-type <io-type>`：设置IO类型，可选的值有`read`、`write`以及`readwrite`(`rw`)。
 
 * `<image-spec>`：`[<pool-name>/[<namespace>/]]<image-name>`
 
