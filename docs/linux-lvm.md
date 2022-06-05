@@ -22,7 +22,7 @@ LE：Logical Extent
 |                                 |    PV     |    VG     |    LV     |
 | ------------------------------- | :-------: | :-------: | :-------: |
 | 创建`*create`                   | pvcreate  | vgcreate  | lvcreate  |
-| 查看卷/卷组的概要信息`*s`       |    pvs    |    vgs    |           |
+| 查看卷/卷组的概要信息`*s`       |    pvs    |    vgs    |    lvs    |
 | 列出所有的卷/卷组`*scan`        |  pvscan   |  vgscan   |  lvscan   |
 | 查看卷/卷组的详细信息`*display` | pvdisplay | vgdisplay | lvdisplay |
 | 扩容`*extend`                   |    ——     | vgextend  | lvextend  |
