@@ -7,6 +7,8 @@
     * [RAID](/linux-raid.md)
     * [LVM](/linux-lvm.md)
     * [dd](/dd.md)
+* 基础命令
+  * [文件与目录管理](/file-and-directory-manage.md)
 * 本地文件系统
   * 内核文件系统
     * e2fsprog
