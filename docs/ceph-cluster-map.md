@@ -20,6 +20,33 @@ election_strategy: 1
 dumped monmap epoch 3
 ```
 
+src/mon/MonMap.h
+
+```c++
+class MonMap {
+  public:
+    epoch_t epoch;       // what epoch/version of the monmap
+    uuid_d fsid;
+    utime_t last_changed;
+    utime_t created;
+
+    std::map<std::string, mon_info_t> mon_info;
+    // 存储了每个mon的名字，如[xdata1,xdata2,xdata6]
+    std::vector<std::string> ranks;
+    enum election_strategy {
+      // Keep in sync with ElectionLogic.h!
+      CLASSIC = 1, // the original rank-based one
+      DISALLOW = 2, // disallow a set from being leader
+      CONNECTIVITY = 3 // includes DISALLOW, extends to prefer stronger connections
+  };
+  election_strategy strategy = CLASSIC;
+  std::set<std::string> disallowed_leaders; // can't be leader under CONNECTIVITY/DISALLOW
+}
+```
+
+src/mon/MonMap.cc
+
+MonMap::print
 
 ### OSD Map
 
