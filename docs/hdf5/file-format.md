@@ -9,7 +9,7 @@ wget https://support.hdfgroup.org/ftp/HDF5/examples/files/exbyapi/h5ex_d_chunk.h
 ![](../img/hdf5-file-format-superblock.png)
 
 ```bash
-[root@node14 ~]# hexdump -Cn 56 h5ex_d_chunk.h5
+[root@hgs ~]# hexdump -Cn 56 h5ex_d_chunk.h5
 00000000  89 48 44 46 0d 0a 1a 0a  00 00 00 00 00 08 08 00  |.HDF............|
 00000010  04 00 10 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 00000020  ff ff ff ff ff ff ff ff  b0 10 00 00 00 00 00 00  |................|
@@ -38,7 +38,7 @@ End of File Address：HDF5文件结束的位置。在当前例子中，该地址
 
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x38 -n 40 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x38 -n 40 h5ex_d_chunk.h5 
 00000038  00 00 00 00 00 00 00 00  60 00 00 00 00 00 00 00  |........`.......|
 00000048  01 00 00 00 00 00 00 00  88 00 00 00 00 00 00 00  |................|
 00000058  a8 02 00 00 00 00 00 00                           |........|
@@ -62,7 +62,7 @@ Address of Name Heap: 0x02a8
 
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x60 -n 40 h5ex_d_chunk.h5
+[root@hgs ~]# hexdump -Cs 0x60 -n 40 h5ex_d_chunk.h5
 00000060  01 00 01 00 01 00 00 00  18 00 00 00 00 00 00 00  |................|
 00000070  11 00 10 00 00 00 00 00  88 00 00 00 00 00 00 00  |................|
 00000080  a8 02 00 00 00 00 00 00                           |........|
@@ -89,7 +89,7 @@ $$
 因此，共占用544个字节
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x88 -n 544 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x88 -n 544 h5ex_d_chunk.h5 
 00000088  54 52 45 45 00 00 01 00  ff ff ff ff ff ff ff ff  |TREE............|
 00000098  ff ff ff ff ff ff ff ff  00 00 00 00 00 00 00 00  |................|
 000000a8  30 04 00 00 00 00 00 00  08 00 00 00 00 00 00 00  |0...............|
@@ -107,7 +107,7 @@ $$
 共占用32个字节。
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x02a8 -n 32 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x02a8 -n 32 h5ex_d_chunk.h5 
 000002a8  48 45 41 50 00 00 00 00  58 00 00 00 00 00 00 00  |HEAP....X.......|
 000002b8  10 00 00 00 00 00 00 00  c8 02 00 00 00 00 00 00  |................|
 000002c8
@@ -120,7 +120,7 @@ $$
 3.Address of Data Segment = 0x02c8
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x02c8 -n 0x58 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x02c8 -n 0x58 h5ex_d_chunk.h5 
 000002c8  00 00 00 00 00 00 00 00  44 53 31 00 00 00 00 00  |........DS1.....|
 000002d8  01 00 00 00 00 00 00 00  48 00 00 00 00 00 00 00  |........H.......|
 000002e8  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
@@ -142,7 +142,7 @@ $$
 $$
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0430 -n 328 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0430 -n 328 h5ex_d_chunk.h5 
 00000430  53 4e 4f 44 01 00 01 00  08 00 00 00 00 00 00 00  |SNOD............|
 00000440  20 03 00 00 00 00 00 00  00 00 00 00 00 00 00 00  | ...............|
 00000450  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
@@ -162,7 +162,7 @@ Object Header Address：0x0320
 继续看下对象头：
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0320 -n 272 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0320 -n 272 h5ex_d_chunk.h5 
 00000320  01 00 06 00 01 00 00 00  00 01 00 00 00 00 00 00  |................|
 00000330
 ```
@@ -172,7 +172,7 @@ Object Header Address：0x0320
 1.
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0330 -n 16 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0330 -n 16 h5ex_d_chunk.h5 
 00000330  05 00 08 00 01 00 00 00  02 03 02 01 00 00 00 00  |................|
 00000340
 ```
@@ -197,7 +197,7 @@ Object Header Address：0x0320
 2.
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0340 -n 24 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0340 -n 24 h5ex_d_chunk.h5 
 00000340  03 00 10 00 01 00 00 00  10 08 00 00 04 00 00 00  |................|
 00000350  00 00 20 00 00 00 00 00                           |.. .....|
 00000358
@@ -220,7 +220,7 @@ Object Header Address：0x0320
 3.
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0358 -n 32 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0358 -n 32 h5ex_d_chunk.h5 
 00000358  01 00 18 00 00 00 00 00  01 02 00 00 00 00 00 00  |................|
 00000368  06 00 00 00 00 00 00 00  08 00 00 00 00 00 00 00  |................|
 00000378
@@ -245,7 +245,7 @@ Dimension #2 Size：8
 4.
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0378 -n 32 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0378 -n 32 h5ex_d_chunk.h5 
 00000378  08 00 18 00 01 00 00 00  03 02 03 78 05 00 00 00  |...........x....|
 00000388  00 00 00 04 00 00 00 04  00 00 00 04 00 00 00 00  |................|
 00000398
@@ -267,12 +267,12 @@ Address：0x0578，查询Chunk地址的B-tree地址。
 
 Dimension 0 - 2 Size：均为0x04，这表明数据集被切分为4个4×4的chunk。
 
-Dataset Element Size：在数据集中，一个元素占用的字节数。这里的值为`00`，？？？？
+Dataset Element Size：在数据集中，一个元素占用的字节数。在当前示例中，值为`00`。
 
 5.
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0398 -n 16 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0398 -n 16 h5ex_d_chunk.h5 
 00000398  12 00 08 00 00 00 00 00  01 00 00 00 6c 2c a2 4b  |............l,.K|
 000003a8
 ```
@@ -286,7 +286,7 @@ Dataset Element Size：在数据集中，一个元素占用的字节数。这里
 6.第六个头消息的类型为0x0000，表明该消息为`The NIL Message`，消息头的大小为0x80=128字节。
 
 ```bash
-[root@node14 ~]# hexdump -Cvs 0x03a8 -n 136 h5ex_d_chunk.h5
+[root@hgs ~]# hexdump -Cvs 0x03a8 -n 136 h5ex_d_chunk.h5
 000003a8  00 00 80 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 000003b8  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 000003c8  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
@@ -304,7 +304,7 @@ Dataset Element Size：在数据集中，一个元素占用的字节数。这里
 ![](../img/hdf5-file-format-btree-nodes.png)
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0578 -n 24 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0578 -n 24 h5ex_d_chunk.h5 
 00000578  54 52 45 45 01 00 04 00  ff ff ff ff ff ff ff ff  |TREE............|
 00000588  ff ff ff ff ff ff ff ff                           |........|
 00000590
@@ -322,7 +322,7 @@ $$
 因此：
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0590 -n 1312 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0590 -n 1312 h5ex_d_chunk.h5 
 00000590  40 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |@...............|
 000005a0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 000005b0  b0 0f 00 00 00 00 00 00  40 00 00 00 00 00 00 00  |........@.......|
@@ -352,12 +352,12 @@ Key分为三个部分：
 
 | Key 1  | Child 1的地址 | Key 2  | Child 2的地址 | Key 3  | Child 3的地址 | Key 4  | Child 4的地址 | Key 5 |
 | :----: | :-----------: | :------: | :-------------: | :------: | :-------------: | :------: | :-------------: | :-----: |
-| (0, 0) |    0x0fb0     | (0, 4) | 0x0ff0        | (4, 0) | 0x1030        | (4, 4) | 0x1070        |       |
+| (0, 0) |    0x0fb0     | (0, 4) | 0x0ff0        | (4, 0) | 0x1030        | (4, 4) | 0x1070        | (4, 4) |
 
 对于[0xab0, 0x0fb0)，均为0：
 
 ```bash
-[root@node14 ~]# hexdump -Cs 0x0ab0 -n 1280 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cs 0x0ab0 -n 1280 h5ex_d_chunk.h5 
 00000ab0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 *
 00000fb0
@@ -366,7 +366,7 @@ Key分为三个部分：
 下面来看看四个子指针所指向的内容，即Chunk：
 
 ```bash
-[root@node14 ~]# hexdump -Cvs 0x0fb0 -n 256 h5ex_d_chunk.h5 
+[root@hgs ~]# hexdump -Cvs 0x0fb0 -n 256 h5ex_d_chunk.h5 
 00000fb0  00 00 00 00 01 00 00 00  00 00 00 00 00 00 00 00  |................|
 00000fc0  01 00 00 00 01 00 00 00  00 00 00 00 01 00 00 00  |................|
 00000fd0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
@@ -386,10 +386,10 @@ Key分为三个部分：
 000010b0
 ```
 
-<img src="../img/hdf5-file-format-data-chunk.png" width="400"/>
+![](../img/hdf5-file-format-data-chunk.png)
 
 ```bash
-[root@node14 ~]# h5dump h5ex_d_chunk.h5 
+[root@hgs ~]# h5dump h5ex_d_chunk.h5 
 HDF5 "h5ex_d_chunk.h5" {
 GROUP "/" {
    DATASET "DS1" {
