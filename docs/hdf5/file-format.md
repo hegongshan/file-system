@@ -151,6 +151,8 @@ $$
 00000578
 ```
 
+![](../img/hdf5-file-format-symbol-table-entry.png)
+
 Link Name Offset: 从Local Heap的第8个字节开始
 
 Object Header Address：0x0320
@@ -386,7 +388,7 @@ Key分为三个部分：
 000010b0
 ```
 
-![](../img/hdf5-file-format-data-chunk.png)
+![](../img/hdf5-file-format-data-chunk.png ':size=400x400')
 
 ```bash
 [root@hgs ~]# h5dump h5ex_d_chunk.h5 
@@ -407,6 +409,10 @@ GROUP "/" {
 }
 }
 ```
+
+综上所述，我们可以得出，示例文件的布局：
+
+![](../img/hdf5-file-format-example-chunk.png)
 
 ### 参考资料
 
