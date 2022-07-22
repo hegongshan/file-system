@@ -21,7 +21,6 @@
     * [Lab2: NYU CS202 File System](/nyu-cs202-lab-file-system.md)
   * 常用命令
     * [文件系统的使用](/file-system-usage.md)
-  
 * [分布式文件系统](/distributed-file-system.md)
   * [网络文件系统](/network-file-system.md)
   * 可靠性
@@ -41,12 +40,13 @@
             * [RADOS bench](/ceph-rados-bench.md)
             * [RBD bench](/ceph-rbd-bench.md)
 * HDF5
+    * [安装HDF5](/hdf5/hdf5-installation.md)
     * [文件格式](/hdf5/file-format.md)
+    * [h5bench](/hdf5/h5bench.md)
 * 测试工具
     * [FIO](/fio.md)
     * [Filebench](/filebench.md)
     * [mdtest](/mdtest.md)
-
 * [重要会议](/conference.md)
     * [FAST](/fast.md)
     * [SOSP](/sosp.md)

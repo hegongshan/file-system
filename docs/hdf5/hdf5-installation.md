@@ -10,11 +10,13 @@ git clone https://github.com/HDFGroup/hdf5.git
 cd hdf5 && mkdir build && cd build
 ```
 
-3.配置，支持并行
+3.配置
 
 ```bash
 cmake -DHDF5_ENABLE_PARALLEL=ON ..
 ```
+
+这里添加了`-DHDF5_ENABLE_PARALLEL=ON`选项，以支持并行。
 
 4.编译
 
