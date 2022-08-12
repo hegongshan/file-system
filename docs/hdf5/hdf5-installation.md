@@ -29,7 +29,9 @@ yum install -y openmpi3-devel
 ```
 
 > 1.头文件安装在`/usr/include/openmpi3-x86_64`目录下；
+>
 > 2.命令行工具安装在`/usr/lib64/openmpi3/bin`目录下；
+>
 > 3.链接库安装在`/usr/lib64/openmpi3/lib`目录下。
 
 4.编译
@@ -67,7 +69,7 @@ export CPLUS_INCLUDE_PATH=/usr/local/HDF_Group/HDF5/1.13.2/include:$CPLUS_INCLUD
 # 设置程序编译时的链接库搜索路径，以便找到libhdf5.so
 export LIBRARY_PATH=/usr/local/HDF_Group/HDF5/1.13.2/lib:$LIBRARY_PATH
 
-# 设置程序执行时链接库搜索路径
+# 设置程序执行时的链接库搜索路径，以便找到libhdf5.so
 export LD_LIBRARY_PATH=/usr/lib64/openmpi3/lib:/usr/local/HDF_Group/HDF5/1.13.2/lib:$LD_LIBRARY_PATH
 ```
 
