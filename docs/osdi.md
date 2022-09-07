@@ -6,6 +6,7 @@ USENIX Symposium on Operating Systems Design and Implementation (OSDI) 创办于
 
 | Year | Submitted | Accepted | Acceptance Rate |
 | :--: | :-------: | :------: | :-------------: |
+| 2022 |    253    |    49    |      19.4%      |
 | 2021 |    165    |    31    |       19%       |
 | 2020 |    400    |    70    |       18%       |
 | 2018 |    257    |    47    |       18%       |
