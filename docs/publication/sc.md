@@ -1,0 +1,1 @@
+SC（The International Conference for High Performance Computing, Networking, Storage, and Analysis）创建于1988年，是高性能计算领域的顶级会议，通常在每年的11月份举办。
