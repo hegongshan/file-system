@@ -13,7 +13,7 @@ USENIX Symposium on Operating Systems Design and Implementation (OSDI) 创办于
 | 2016 |    260    |    47    |       18%       |
 | 2014 |    228    |    42    |       18%       |
 
-![](/img/osdi-submitted-acceptance-rate.png)
+![](../img/osdi-submitted-acceptance-rate.png)
 
 注：上述图片来自于https://www.usenix.org/sites/default/files/osdi14_message.pdf
 
