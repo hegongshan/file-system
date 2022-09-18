@@ -2,11 +2,11 @@ USENIX Conference on File and Storage Technologies (FAST) 创办于2002年，是
 
 1.打开会议主页，找到Front Matter
 
-![](/img/fast-front-matter.png)
+![](../img/fast-front-matter.png)
 
 2.点击【Message from the Program Co-Chairs】
 
-![](/img/fast-submitted-acceptance-rate.png)
+![](../img/fast-submitted-acceptance-rate.png)
 
 3.自2012年以来的投稿和录用情况统计：
 
