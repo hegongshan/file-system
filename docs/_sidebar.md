@@ -40,7 +40,7 @@
             * [RADOS bench](/ceph-rados-bench.md)
             * [RBD bench](/ceph-rbd-bench.md)
 * Storage for AI
-    * [DNN训练流程](/README.md)
+    * [DNN训练流程](/storage-for-ai/README.md)
     * TensorFlow
         * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)
     * HDF5
