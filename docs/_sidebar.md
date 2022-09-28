@@ -33,12 +33,13 @@
   * [数据同步](/sync/README.md)
     * [rsync](/sync/rsync.md)
 * 开源系统
-    * [Ceph](/ceph-install.md)
-        * [Cluster Map工具](/ceph-cluster-map.md)
+    * [Ceph](/installation.md)
+	* [OSD管理](/osd.md)
+        * [Cluster Map工具](/cluster-map.md)
         * [共识](/ceph/mon/paxos.md)
         * 测试工具
-            * [RADOS bench](/ceph-rados-bench.md)
-            * [RBD bench](/ceph-rbd-bench.md)
+            * [RADOS bench](/ceph/rados-bench.md)
+            * [RBD bench](/ceph/rbd-bench.md)
 * Storage for AI
     * [DNN训练流程](/storage-for-ai/README.md)
     * TensorFlow
