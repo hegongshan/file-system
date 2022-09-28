@@ -34,8 +34,8 @@
     * [rsync](/sync/rsync.md)
 * 开源系统
     * [Ceph](/installation.md)
-        * [OSD管理](/osd.md)
-        * [Cluster Map工具](/cluster-map.md)
+        * [OSD管理](/ceph/osd.md)
+        * [Cluster Map工具](/ceph/cluster-map.md)
         * [共识](/ceph/mon/paxos.md)
         * 测试工具
             * [RADOS bench](/ceph/rados-bench.md)
