@@ -33,7 +33,7 @@
   * [数据同步](/sync/README.md)
     * [rsync](/sync/rsync.md)
 * 开源系统
-    * [Ceph](/installation.md)
+    * [Ceph](/ceph/installation.md)
         * [OSD管理](/ceph/osd.md)
         * [Cluster Map工具](/ceph/cluster-map.md)
         * [共识](/ceph/mon/paxos.md)
