@@ -35,15 +35,15 @@ seq：顺序读写
 
 例如，假设RBD的大小为15.5个块，测试总大小>RBD大小，使用4个线程进行测试，Chunk=15.5/4=3个块：
 
-![步骤1](/img/ceph-rbd-bench-io-pattern-seq-step1.png)
+![步骤1](../img/ceph-rbd-bench-io-pattern-seq-step1.png)
 
 当线程执行完各自的Chunk后，RBD只剩下3.5个块，无法为第4个线程分配一个块，此时让第4个线程重新处理Chunk中的第一个块。
 
-![步骤2](/img/ceph-rbd-bench-io-pattern-seq-step2.png)
+![步骤2](../img/ceph-rbd-bench-io-pattern-seq-step2.png)
 
 虽然RBD已经被处理完，但测试仍未结束，此时让每个线程不停地处理各自Chunk中的第一个块，直至测试结束。
 
-![步骤2](/img/ceph-rbd-bench-io-pattern-seq-step3.png)
+![步骤3](../img/ceph-rbd-bench-io-pattern-seq-step3.png)
 
 full-seq：n个线程依次处理每一个块
 
