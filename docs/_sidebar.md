@@ -44,9 +44,11 @@
     * [DNN训练流程](/storage-for-ai/README.md)
     * TensorFlow
         * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)
+        * [输入流水线](/storage-for-ai/tensorflow/input-pipeline.md)
     * HDF5
         * [安装HDF5](/hdf5/installation.md)
-        * [API](/hdf5/api.md)
+        * [C API](/hdf5/c-api.md)
+        * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
         * [h5bench](/hdf5/h5bench.md)
 * 测试工具

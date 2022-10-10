@@ -1,7 +1,5 @@
 ### 创建文件
 
-* C
-
 ```c
 hid_t H5Fcreate(const char *filename, unsigned flags, hid_t fcpl_id, hid_t fapl_id);
 ```
@@ -30,18 +28,7 @@ int main()
 }
 ```
 
-* Python3
-
-```python
-import h5py
-
-file = h5py.File('test.h5', 'w')
-file.close()
-```
-
 ### 创建数据集
-
-* C
 
 ```c
 hid_t H5Screate_simple(int rank, const hsize_t dims[], const hsize_t maxdims[]);
@@ -84,16 +71,6 @@ int main()
    status = H5Sclose(dataspace_id);
 
 }
-```
-
-* Python3
-
-```python
-import h5py
-
-file = h5py.File('test.h5', 'w')
-file.create_dataset("dset", shape=(4, 6), dtype=h5py.h5t.STD_I32BE)
-file.close()
 ```
 
 ### 创建组
