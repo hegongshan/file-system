@@ -1,3 +1,35 @@
+### 包管理器安装
+
+* Ubuntu
+
+> 1.hdf5的开发包会依赖hdf5的运行库libhdf5-xxx（libhdf5-openmpi-xxx）和编译工具hdf5-helpers（包括h5cc、h5c++以及h5fc）
+>
+> 2.hdf5提供的运行时工具（如h5ls、h5dump等）包含在hdf5-tools中
+
+```bash
+# 串行版本
+apt install -y libhdf5-dev hdf5-tools
+
+# OpenMPI版本
+apt install -y libhdf5-openmpi-dev hdf5-tools
+```
+
+* CentOS
+
+> hdf5：包含库文件和运行时工具
+>
+> hdf5-devel：包含hdf5的头文件和编译工具
+
+```bash
+# 串行版本
+yum install -y hdf5 hdf5-devel
+
+# OpenMPI版本
+yum install -y hdf5-openmpi3 hdf5-openmpi3-devel
+```
+
+### 源码安装
+
 1.下载源码
 
 ```bash
