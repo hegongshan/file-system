@@ -192,7 +192,7 @@ $ ./test-dataset-read.out
 
 ### 删除操作
 
-在HDF5中，没有专门的`H5Ddelete`和`H5Gdelete`函数。如果要删除数据集或组，需要使用`H5Ldelete`，方法签名如下：
+如果要删除数据集或组，需要使用`H5Ldelete`，方法签名如下：
 
 ```c
 htri_t H5Lexists(hid_t loc_id, const char *name, hid_t lapl_id);
