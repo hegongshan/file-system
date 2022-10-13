@@ -1,3 +1,5 @@
+
+
 ### 写入操作
 
 #### 创建文件
@@ -42,6 +44,18 @@ int main()
 ```
 
 > H5P_DEFAULT表示使用相应属性列表的默认值
+
+运行结果如下：
+
+```bash
+$ h5cc test-hdf5-file-create.c -o test-file-create.out
+$ ./test-file-create.out
+$ h5dump test.h5
+HDF5 "test.h5" {
+GROUP "/" {
+}
+}
+```
 
 #### 创建数据集
 
@@ -129,6 +143,151 @@ GROUP "/" {
 }
 ```
 
+#### 创建组
+
+方法签名如下：
+
+```c
+hid_t H5Gcreate(hid_t loc_id, const char *name, hid_t lcpl_id, hid_t gcpl_id, hid_t gapl_id);
+```
+
+
+
+```c
+#include <hdf5.h>
+
+#define DIM0 4
+#define DIM1 6
+
+int main(int argc, char const *argv[])
+{
+    hid_t file_id, group_id, dataset_id, space_id;
+    herr_t status;
+    int dset_data[DIM0][DIM1];
+
+    // 1.打开文件
+    file_id = H5Fopen("test.h5", H5F_ACC_RDWR, H5P_DEFAULT);
+    
+    // 2.创建组
+    group_id = H5Gcreate(file_id, "MyGroup", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+
+    // 3.在组中创建数据集
+    hsize_t dims[] = {DIM0, DIM1};
+    space_id = H5Screate_simple(2, dims, NULL);
+    dataset_id = H5Dcreate(group_id, "DS1", H5T_STD_I32LE, space_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    
+    // 4.关闭并释放资源
+    status = H5Sclose(space_id);
+    status = H5Dclose(dataset_id);
+    status = H5Gclose(group_id);
+    status = H5Fclose(file_id);
+    return 0;
+}
+
+```
+
+运行结果如下：
+
+```bash
+$ h5cc test-hdf5-group-create.c -o test-group-create.out              
+$ ./test-group-create.out 
+$ h5dump -g /MyGroup test.h5
+HDF5 "test.h5" {
+GROUP "/MyGroup" {
+   DATASET "DS1" {
+      DATATYPE  H5T_STD_I32LE
+      DATASPACE  SIMPLE { ( 4, 6 ) / ( 4, 6 ) }
+      DATA {
+      (0,0): 0, 0, 0, 0, 0, 0,
+      (1,0): 0, 0, 0, 0, 0, 0,
+      (2,0): 0, 0, 0, 0, 0, 0,
+      (3,0): 0, 0, 0, 0, 0, 0
+      }
+   }
+}
+}
+```
+
+#### 创建属性
+
+属性有自己的数据类型和数据空间。
+
+```c
+hid_t H5Acreate2(
+    hid_t loc_id, 
+    const char *attr_name, 
+    hid_t type_id, 
+    hid_t space_id, 
+    hid_t acpl_id, 
+    hid_t aapl_id
+);
+herr_t H5Awrite(
+    hid_t attr_id,
+    hid_t mem_type_id,
+    const void *buf
+);
+```
+
+`H5Acreate()`是映射向`H5Acreate2()`的宏。
+
+示例：
+
+```c
+#include <hdf5.h>
+
+int main(int argc, char const *argv[])
+{
+    hid_t file_id, group_id, dataset_id, attr_space_id, attr_id;
+    herr_t status;
+    hsize_t dims;
+    int attr_data[2];
+
+    // 1.打开文件、组和数据集
+    file_id = H5Fopen("test.h5", H5F_ACC_RDWR, H5P_DEFAULT);
+    group_id = H5Gopen(file_id, "MyGroup", H5P_DEFAULT);
+    dataset_id = H5Dopen(group_id, "DS1", H5P_DEFAULT);
+
+    // 2.创建数据集属性
+    dims = 2;
+    attr_data[0] = 100;
+    attr_data[1] = 200;
+    attr_space_id = H5Screate_simple(1, &dims, NULL);
+    if (!H5Aexists(dataset_id, "Units")) {
+        attr_id = H5Acreate(dataset_id, "Units", H5T_STD_I32LE, attr_space_id, H5P_DEFAULT, H5P_DEFAULT);
+
+        // 3.写属性数据
+        status = H5Awrite(attr_id, H5T_NATIVE_INT, attr_data);
+    }
+    
+    // 4.关闭并释放资源
+    status = H5Aclose(attr_id);
+    status = H5Sclose(attr_space_id);
+    status = H5Dclose(dataset_id);
+    status = H5Gclose(group_id);
+    status = H5Fclose(file_id);
+    return 0;
+}
+```
+
+运行结果如下：
+
+```bash
+$ h5cc test-hdf5-attribute-create.c -o test-attribute-create.out
+$ ./test-attribute-create.out
+$ h5dump -a /MyGroup/DS1/Units test.h5
+HDF5 "test.h5" {
+ATTRIBUTE "Units" {
+   DATATYPE  H5T_STD_I32LE
+   DATASPACE  SIMPLE { ( 2 ) / ( 2 ) }
+   DATA {
+   (0): 100, 200
+   }
+}
+}
+```
+
+
+
 ### 读取操作
 
 #### 读文件
@@ -190,6 +349,43 @@ $ ./test-dataset-read.out
  [  19  20  21  22  23  24]
 ```
 
+#### 读取组
+
+方法签名如下：
+
+```c
+hid_t H5Gopen(hid_t loc_id, const char * name, hid_t gapl_id);
+herr_t H5Gget_info(hid_t group_id, H5G_info_t *group_info);
+```
+
+示例：
+
+```c
+#include <hdf5.h>
+
+int main(int argc, char const *argv[])
+{
+    hid_t file_id, group_id;
+    herr_t status;
+    H5G_info_t ginfo;
+
+    // 1.打开文件
+    file_id = H5Fopen("test.h5", H5F_ACC_RDWR, H5P_DEFAULT);
+    
+    // 2.打开组
+    group_id = H5Gopen(file_id, "MyGroup", H5P_DEFAULT);
+    status = H5Gget_info(group_id, &ginfo);
+    printf("Storage Type (0, 1 and 2 denote symbol tables, compact and indexed storage, respectively): %d\n", ginfo.storage_type);
+    printf("Number of links: %lld\n", ginfo.nlinks);
+    
+    // 3.关闭并释放资源
+    status = H5Gclose(group_id);
+    status = H5Fclose(file_id);
+    return 0;
+}
+
+```
+
 ### 删除操作
 
 如果要删除数据集或组，需要使用`H5Ldelete`，方法签名如下：
@@ -226,6 +422,18 @@ $ ./test-dataset-delete.out
 $ h5dump test.h5
 HDF5 "test.h5" {
 GROUP "/" {
+   GROUP "MyGroup" {
+      DATASET "DS1" {
+         DATATYPE  H5T_STD_I32LE
+         DATASPACE  SIMPLE { ( 4, 6 ) / ( 4, 6 ) }
+         DATA {
+         (0,0): 0, 0, 0, 0, 0, 0,
+         (1,0): 0, 0, 0, 0, 0, 0,
+         (2,0): 0, 0, 0, 0, 0, 0,
+         (3,0): 0, 0, 0, 0, 0, 0
+         }
+      }
+   }
 }
 }
 ```
