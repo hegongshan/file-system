@@ -43,6 +43,7 @@
 * Storage for AI
     * [DNN训练流程](/storage-for-ai/README.md)
     * TensorFlow
+        * [tf.data](/storage-for-ai/tensorflow/data.md)
         * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)
         * [输入流水线](/storage-for-ai/tensorflow/input-pipeline.md)
     * HDF5
