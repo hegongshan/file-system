@@ -47,6 +47,8 @@
         * [输入流水线](/storage-for-ai/tensorflow/input-pipeline.md)
     * HDF5
         * [安装HDF5](/hdf5/installation.md)
+        * 命令行工具
+            * [h5dump](/hdf5/tool/h5dump.md)
         * [C API](/hdf5/c-api.md)
         * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
