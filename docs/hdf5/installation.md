@@ -54,12 +54,24 @@ cmake -DHDF5_ENABLE_PARALLEL=ON ..
 Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS)
 ```
 
-安装MPI
+安装MPI：
 
 ```bash
+# Ubuntu
+apt install -y libopenmpi-dev
+```
+
+> 对于apt，OpenMPI的安装位置如下：
+>
+> 1.`/usr/lib/x86_64-linux-gnu/openmpi/`
+
+```bash
+# CentOS
 yum install -y openmpi3-devel
 ```
 
+> 对于yum，OpenMPI的安装位置如下：
+>
 > 1.头文件安装在`/usr/include/openmpi3-x86_64`目录下；
 >
 > 2.命令行工具安装在`/usr/lib64/openmpi3/bin`目录下；

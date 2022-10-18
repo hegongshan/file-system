@@ -151,7 +151,7 @@ GROUP "/" {
 hid_t H5Gcreate(hid_t loc_id, const char *name, hid_t lcpl_id, hid_t gcpl_id, hid_t gapl_id);
 ```
 
-
+示例：
 
 ```c
 #include <hdf5.h>
@@ -286,8 +286,6 @@ ATTRIBUTE "Units" {
 }
 ```
 
-
-
 ### 读取操作
 
 #### 读文件
@@ -386,9 +384,122 @@ int main(int argc, char const *argv[])
 
 ```
 
+#### 读取属性
+
+示例：
+
+```c
+#include <hdf5.h>
+
+#define DIM 2
+
+int main(int argc, char const *argv[])
+{
+    hid_t file_id, dataset_id, attr_id, attr_space_id;
+    herr_t status;
+    int rank, attr_data[DIM];
+    hsize_t dims;
+    H5S_class_t space_type;
+
+    // 1.打开文件、数据集以及属性
+    file_id = H5Fopen("test.h5", H5F_ACC_RDWR, H5P_DEFAULT);
+    dataset_id = H5Dopen(file_id, "/MyGroup/DS1", H5P_DEFAULT);
+    attr_id = H5Aopen(dataset_id, "Units", H5P_DEFAULT);
+
+    // 2.读取属性
+    status = H5Aread(attr_id, H5T_NATIVE_INT, attr_data);
+    for (int i = 0; i < DIM; i++) {
+        printf("%d\n", attr_data[i]);
+    }
+
+    // 3.读取属性的数据空间
+    attr_space_id = H5Aget_space(attr_id);
+    rank = H5Sget_simple_extent_dims(attr_space_id, &dims, NULL);
+    space_type = H5Sget_simple_extent_type(attr_space_id);
+    printf("Rank = %d, Dims = %lld, Type of Dataspace (1 denotes simple dataset) = %d\n", rank, dims, space_type);
+
+    // 4.关闭并释放资源
+    status = H5Sclose(attr_space_id);
+    status = H5Aclose(attr_id);
+    status = H5Dclose(dataset_id);
+    status = H5Fclose(file_id);
+    return 0;
+}
+```
+
 ### 删除操作
 
-如果要删除数据集或组，需要使用`H5Ldelete`，方法签名如下：
+#### 删除属性
+
+如果要删除属性，需要使用`H5Adelete()`方法签名如下：
+
+```c
+herr_t H5Adelete(hid_t loc_id, const char *attr_name);
+```
+
+示例：
+
+```c
+#include <hdf5.h>
+
+int main(int argc, char const *argv[])
+{
+    hid_t file_id, dataset_id;
+    herr_t status;
+
+    // 1.打开文件和数据集
+    file_id = H5Fopen("test.h5", H5F_ACC_RDWR, H5P_DEFAULT);
+    dataset_id = H5Dopen(file_id, "/MyGroup/DS1", H5P_DEFAULT);
+
+    // 2.删除属性
+    status = H5Adelete(dataset_id, "Units");
+    
+    // 3.关闭并释放资源
+    status = H5Dclose(dataset_id);
+    status = H5Fclose(file_id);
+    return 0;
+}
+```
+
+执行结果如下：
+
+```bash
+$ h5dump -A test.h5
+HDF5 "test.h5" {
+GROUP "/" {
+   GROUP "MyGroup" {
+      DATASET "DS1" {
+         DATATYPE  H5T_STD_I32LE
+         DATASPACE  SIMPLE { ( 4, 6 ) / ( 4, 6 ) }
+         ATTRIBUTE "Units" {
+            DATATYPE  H5T_STD_I32LE
+            DATASPACE  SIMPLE { ( 2 ) / ( 2 ) }
+            DATA {
+            (0): 100, 200
+            }
+         }
+      }
+   }
+}
+}
+$ h5cc test_h5_attribute_delete.c -o test_attribute_delete.out
+$ ./test_attribute_delete.out 
+$ h5dump -A test.h5
+HDF5 "test.h5" {
+GROUP "/" {
+   GROUP "MyGroup" {
+      DATASET "DS1" {
+         DATATYPE  H5T_STD_I32LE
+         DATASPACE  SIMPLE { ( 4, 6 ) / ( 4, 6 ) }
+      }
+   }
+}
+}
+```
+
+#### 删除数据集/组
+
+如果要删除数据集或组，需要使用`H5Ldelete()`，方法签名如下：
 
 ```c
 htri_t H5Lexists(hid_t loc_id, const char *name, hid_t lapl_id);
@@ -438,5 +549,27 @@ GROUP "/" {
 }
 ```
 
+#### 删除文件
 
+如果要删除HDF5文件，需要使用`H5Fdelete()`，方法签名如下：
+
+```c
+herr_t H5Fdelete(const char *filename, hid_t fapl_id);
+```
+
+> 函数H5Fdelete()在HDF5 1.12中引入，以支持Virtual Object Layer (VOL)，适配多种存储系统。
+>
+> 然而，原生的HDF5存储Native VOL Connector并没有支持该函数。如果要使用该函数，必须使用1.13及之后的版本。
+
+```c
+#include <hdf5.h>
+
+int main(int argc, char const *argv[])
+{
+    herr_t status;
+
+    status = H5Fdelete("test.h5", H5P_DEFAULT);
+    return 0;
+}
+```
 

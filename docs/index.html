@@ -26,6 +26,10 @@
       loadSidebar: true,
       subMaxLevel: 4,
       auto2top: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+      },
+      sidebarDisplayLevel: 1,
 
       search: {
         paths: 'auto',
@@ -95,7 +99,8 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <script src="//cdn.jsdelivr.net/gh/h-hg/docsify-image-caption/dist/docsify-image-caption.min.js"></script>
   <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
-  
+ <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
   <!-- code highlight -->
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
