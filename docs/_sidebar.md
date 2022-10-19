@@ -46,8 +46,10 @@
         * [安装HDF5](/hdf5/installation.md)
         * 命令行工具
             * [h5dump](/hdf5/tool/h5dump.md)
-        * [C API](/hdf5/c-api.md)
-        * [Python API](/hdf5/python-api.md)
+            * [h5ls](/hdf5/tool/h5ls.md)
+        * API
+            * [C API](/hdf5/c-api.md)
+            * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
         * [h5bench](/hdf5/h5bench.md)
     * [DNN训练流程](/storage-for-ai/README.md)
