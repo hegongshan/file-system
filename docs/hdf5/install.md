@@ -61,7 +61,7 @@ cmake -DHDF5_ENABLE_PARALLEL=ON ..
 Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS)
 ```
 
-安装MPI参看[安装MPI](../mpi/installation.md)
+安装MPI参看[安装MPI](../mpi/install.md)
 
 4.编译
 

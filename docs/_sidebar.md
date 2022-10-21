@@ -33,7 +33,8 @@
   * [数据同步](/sync/README.md)
     * [rsync](/sync/rsync.md)
 * 开源系统
-    * [Ceph](/ceph/installation.md)
+    * Ceph
+        * [安装CephFS](/ceph/install.md)
         * [OSD管理](/ceph/osd.md)
         * [Cluster Map工具](/ceph/cluster-map.md)
         * [共识](/ceph/mon/paxos.md)
@@ -41,11 +42,11 @@
             * [RADOS bench](/ceph/rados-bench.md)
             * [RBD bench](/ceph/rbd-bench.md)
 * 并行处理
-    * [OpenMPI](/mpi/installation.md)
+    * [OpenMPI](/mpi/install.md)
 * Storage for AI
     * HDF5
         * [介绍](/hdf5/introduction.md)
-        * [安装HDF5](/hdf5/installation.md)
+        * [安装HDF5](/hdf5/install.md)
         * 命令行工具
             * [h5dump](/hdf5/tool/h5dump.md)
             * [h5ls](/hdf5/tool/h5ls.md)
