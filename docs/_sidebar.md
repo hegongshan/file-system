@@ -40,6 +40,8 @@
         * 测试工具
             * [RADOS bench](/ceph/rados-bench.md)
             * [RBD bench](/ceph/rbd-bench.md)
+* 并行处理
+    * [OpenMPI](/mpi/installation.md)
 * Storage for AI
     * HDF5
         * [介绍](/hdf5/introduction.md)
