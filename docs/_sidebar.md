@@ -34,6 +34,7 @@
     * [rsync](/sync/rsync.md)
 * 开源系统
     * Ceph
+        * [介绍](/ceph/intro.md)
         * [安装CephFS](/ceph/install.md)
         * [OSD管理](/ceph/osd.md)
         * [Cluster Map工具](/ceph/cluster-map.md)
