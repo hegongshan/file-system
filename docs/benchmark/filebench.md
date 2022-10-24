@@ -51,7 +51,7 @@ Filebench定义了一门用于描述工作负载的语言——WML（Workload Mo
 
 默认情况下，这些工作负载配置文件位于：`/usr/local/share/filebench/workloads`。
 
-<img src="/img/file-system-benchmark-filebench-workload.png" alt="工作负载" width="300px" height="300px"/>
+<img src="../img/benchmark-filebench-workload.png" alt="工作负载" width="300px" height="300px"/>
 
 在测试时，官方不建议直接使用这些配置文件。如果需要使用这些工作负载，可以先复制一份，再进行修改：
 
@@ -67,7 +67,7 @@ filebench -f mywebserver.f
 
 输出的部分结果如下所示：
 
-![工作负载](/img/file-system-benchmark-filebench-webserver-result.png)
+![工作负载](../img/benchmark-filebench-webserver-result.png)
 
 ### 测试结果说明
 

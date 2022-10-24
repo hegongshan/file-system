@@ -73,9 +73,9 @@
         * [支持HDF5](/storage-for-ai/tensorflow/HDF5.md)
         * [输入流水线](/storage-for-ai/tensorflow/input-pipeline.md)
 * 测试工具
-    * [FIO](/fio.md)
-    * [Filebench](/filebench.md)
-    * [mdtest](/mdtest.md)
+    * [FIO](/benchmark/fio.md)
+    * [Filebench](/benchmark/filebench.md)
+    * [mdtest](/benchmark/mdtest.md)
 * 重要会议
     * [FAST](/venue/fast.md)
     * [SOSP](/venue/sosp.md)
