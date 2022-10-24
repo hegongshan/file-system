@@ -1,14 +1,24 @@
 * 存储设备
-  * 设备管理
-    * [数据存储单位](/data-storage-unit.md)
-    * [设备查看](/disk-list.md)
-    * [设备检测](/disk-check.md)
-    * [设备分区](/disk-partition.md)
-    * [RAID](/linux-raid.md)
-    * [LVM](/linux-lvm.md)
-    * [dd](/dd.md)
-* 基础命令
-  * [文件与目录管理](/file-and-directory-manage.md)
+    * 设备管理
+        * [数据存储单位](/device/data-storage-unit.md)
+        * [设备查看](/device/disk-list.md)
+        * [设备检测](/device/disk-check.md)
+        * [设备分区](/device/disk-partition.md)
+        * [RAID](/device/raid.md)
+        * [LVM](/device/lvm.md)
+        * [dd](/devicedd.md)
+* 文件系统基础
+    * [文件与目录管理](/basic/file-and-directory-manage.md)
+    * 文件系统操作
+        * [元数据操作](/basic/posix-metadata-operation.md)
+        * [数据操作](/basic/posix-data-operation.md)
+    * 文件属性
+        * [基本属性](/basic/attr.md)
+        * [扩展属性](/basic/xattr.md)
+        * [其他属性](/basic/hidden-attr.md)
+    * 权限管理
+        * [保护位](/basic/rwx.md)
+        * [访问属性列表](/basic/acl.md)
 * 本地文件系统
   * 内核文件系统
     * e2fsprog
@@ -66,9 +76,9 @@
     * [FIO](/fio.md)
     * [Filebench](/filebench.md)
     * [mdtest](/mdtest.md)
-* [重要会议](/conference.md)
-    * [FAST](/publication/fast.md)
-    * [SOSP](/publication/sosp.md)
-    * [OSDI](/publication/osdi.md)
-    * [ATC](/publication/atc.md)
-    * [SC](/publication/sc.md)
+* 重要会议
+    * [FAST](/venue/fast.md)
+    * [SOSP](/venue/sosp.md)
+    * [OSDI](/venue/osdi.md)
+    * [ATC](/venue/atc.md)
+    * [SC](/venue/sc.md)
