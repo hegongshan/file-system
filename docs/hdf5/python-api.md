@@ -113,6 +113,50 @@ GROUP "/" {
 }
 ```
 
+### 分块
+
+```python
+import h5py
+
+with h5py.File('test_chunk.h5', 'w') as file:
+    file.create_dataset('chunked_dset', shape=(6, 8), dtype=h5py.h5t.STD_I32LE, chunks=(4, 4))
+```
+
+运行结果如下：
+
+```bash
+$ python3 test_h5_chunk.py
+$ h5dump -p -d /chunked_dset test_chunk.h5 
+HDF5 "test_chunk.h5" {
+DATASET "/chunked_dset" {
+   DATATYPE  H5T_STD_I32LE
+   DATASPACE  SIMPLE { ( 6, 8 ) / ( 6, 8 ) }
+   STORAGE_LAYOUT {
+      CHUNKED ( 4, 4 )
+      SIZE 0
+   }
+   FILTERS {
+      NONE
+   }
+   FILLVALUE {
+      FILL_TIME H5D_FILL_TIME_ALLOC
+      VALUE  H5D_FILL_VALUE_DEFAULT
+   }
+   ALLOCATION_TIME {
+      H5D_ALLOC_TIME_INCR
+   }
+   DATA {
+   (0,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (1,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (2,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (3,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (4,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (5,0): 0, 0, 0, 0, 0, 0, 0, 0
+   }
+}
+}
+```
+
 ### 参考资料
 
 1.HDF5 for Python, https://docs.h5py.org
