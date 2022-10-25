@@ -55,6 +55,8 @@
 * 并行处理
     * [OpenMPI](/mpi/install.md)
 * Storage for AI
+    * [DNN训练流程](/storage-for-ai/README.md)
+    * [GNN](/storage-for-ai/nn/GNN.md)
     * HDF5
         * [介绍](/hdf5/introduction.md)
         * [安装HDF5](/hdf5/install.md)
@@ -66,12 +68,13 @@
             * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
         * [h5bench](/hdf5/h5bench.md)
-    * [DNN训练流程](/storage-for-ai/README.md)
     * TensorFlow
         * [tf.data](/storage-for-ai/tensorflow/data.md)
         * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)
         * [支持HDF5](/storage-for-ai/tensorflow/HDF5.md)
         * [输入流水线](/storage-for-ai/tensorflow/input-pipeline.md)
+    * PyTorch
+        * [Dataloader](/storage-for-ai/pytorch/dataloader.md)
 * 测试工具
     * [FIO](/benchmark/fio.md)
     * [Filebench](/benchmark/filebench.md)
