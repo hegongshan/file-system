@@ -60,14 +60,16 @@
     * HDF5
         * [介绍](/hdf5/introduction.md)
         * [安装HDF5](/hdf5/install.md)
-        * 命令行工具
+        * 实用命令行工具
             * [h5dump](/hdf5/tool/h5dump.md)
             * [h5ls](/hdf5/tool/h5ls.md)
         * API
             * [C API](/hdf5/c-api.md)
             * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
-        * [h5bench](/hdf5/h5bench.md)
+        * 测试工具
+            * [h5perf](/hdf5/tool/h5perf.md)
+            * [h5bench](/hdf5/h5bench.md)
     * TensorFlow
         * [tf.data](/storage-for-ai/tensorflow/data.md)
         * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)

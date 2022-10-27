@@ -5,7 +5,9 @@ h5dump是一个命令行工具，用于查看HDF5文件的内容。
 * -d D：查看数据集
 * -g G：查看组
 * -B：查看超级块
-* --header, -H：查看对象头信息（元数据）
+* --header, -H：打印对象头信息（元数据），不显示数据（数据集和属性中的数据）
+* --onlyattr, -A：打印属性头信息和属性值，不显示数据集中的数据
+* --properties, -p：打印数据集的properties信息
 
 Hyperslab相关选项：
 
@@ -127,12 +129,47 @@ DATASET "/DS1" {
 5.仅查看对象头信息
 
 ```bash
-$ h5dump -H -d "/DS1" h5ex_d_chunk.h5
+$ h5dump -H h5ex_d_chunk.h5 
 HDF5 "h5ex_d_chunk.h5" {
-DATASET "/DS1" {
-   DATATYPE  H5T_STD_I32LE
-   DATASPACE  SIMPLE { ( 6, 8 ) / ( 6, 8 ) }
+GROUP "/" {
+   DATASET "DS1" {
+      DATATYPE  H5T_STD_I32LE
+      DATASPACE  SIMPLE { ( 6, 8 ) / ( 6, 8 ) }
+   }
 }
 }
 ```
 
+6.查看数据集的properties信息
+
+```bash
+$ h5dump -p -d "/DS1" h5ex_d_chunk.h5 
+HDF5 "h5ex_d_chunk.h5" {
+DATASET "/DS1" {
+   DATATYPE  H5T_STD_I32LE
+   DATASPACE  SIMPLE { ( 6, 8 ) / ( 6, 8 ) }
+   STORAGE_LAYOUT {
+      CHUNKED ( 4, 4 )
+      SIZE 256
+   }
+   FILTERS {
+      NONE
+   }
+   FILLVALUE {
+      FILL_TIME H5D_FILL_TIME_IFSET
+      VALUE  H5D_FILL_VALUE_DEFAULT
+   }
+   ALLOCATION_TIME {
+      H5D_ALLOC_TIME_INCR
+   }
+   DATA {
+   (0,0): 0, 1, 0, 0, 1, 0, 0, 1,
+   (1,0): 1, 1, 0, 1, 1, 0, 1, 1,
+   (2,0): 0, 0, 0, 0, 0, 0, 0, 0,
+   (3,0): 0, 1, 0, 0, 1, 0, 0, 1,
+   (4,0): 1, 1, 0, 1, 1, 0, 1, 1,
+   (5,0): 0, 0, 0, 0, 0, 0, 0, 0
+   }
+}
+}
+```
