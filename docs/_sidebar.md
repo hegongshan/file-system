@@ -63,6 +63,7 @@
         * 实用命令行工具
             * [h5dump](/hdf5/tool/h5dump.md)
             * [h5ls](/hdf5/tool/h5ls.md)
+            * [h5import](/hdf5/tool/h5import.md)
         * [HDFView](/hdf5/tool/HDFView.md)
         * API
             * [C API](/hdf5/c-api.md)
