@@ -54,6 +54,9 @@
             * [RBD bench](/ceph/rbd-bench.md)
 * 并行处理
     * [OpenMPI](/mpi/install.md)
+* 数据压缩
+    * [gzip](/compression/gzip.md)
+    * [稀疏矩阵](/compression/sparse-matrix.md)
 * Storage for AI
     * [DNN训练流程](/storage-for-ai/README.md)
     * [GNN](/storage-for-ai/nn/GNN.md)
