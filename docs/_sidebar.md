@@ -72,6 +72,7 @@
             * [C API](/hdf5/c-api.md)
             * [Python API](/hdf5/python-api.md)
         * [文件格式](/hdf5/file-format.md)
+        * [文件锁](/hdf5/file-locking.md)
         * 测试工具
             * [h5perf](/hdf5/tool/h5perf.md)
             * [h5bench](/hdf5/h5bench.md)
