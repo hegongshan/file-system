@@ -2,19 +2,31 @@
 
 格式如下：
 
-![](../img/hdf5-file-format-superblock-version-2&3.png)
+![](../img/hdf5-file-format-superblock-version-2&3.png ':size=500x400')
 
 其中，File Consistency Flags占一个字节，每个比特的说明如下所示：
 
-![](../img/hdf5-superblock-file-consistency-flags.png)
+![](../img/hdf5-superblock-file-consistency-flags.png ':size=350x180')
 
-设置环境变量`HDF5_USE_FILE_LOCKING`：
+### 判断是否要加锁
 
-1.如果不使用文件锁，可选的值：`FALSE`和`0`
+默认使用文件锁，如果不想使用文件锁，有以下两种方法：
 
-2.如果使用文件锁，可选的值：`TRUE`、`1`和`BEST_EFFORT`
+1.使用函数H5Pset_file_locking()
 
-### use_file_locking的赋值过程
+```c
+herr_t H5Pset_file_locking(hid_t fapl_id, hbool_t use_file_locking, hbool_t ignore_when_disabled);
+```
+
+示例：
+
+2.设置环境变量`HDF5_USE_FILE_LOCKING`
+
+* 如果不使用文件锁，可选的值：`FALSE`
+
+* 如果使用文件锁，可选的值：`TRUE`
+
+判断是否要加锁的代码片段如下所示：
 
 ```c
 // H5Fint.c
@@ -41,13 +53,11 @@ done:
 }
 ```
 
-优先级：环境变量>H5Pset_file_locking>默认值
-
-如果设置了环境变量，则使用环境变量的值；
-
-如果手动调用了函数H5Pset_file_locking()，则使用该函数的设置；否则，默认使用文件锁。
+从上面的代码可以看出，环境变量的优先级最高，其次是手动调用函数H5Pset_file_locking()，然后才是默认行为。
 
 ### 加锁和标记过程
+
+![](../img/hdf5-file-locking.png ':size=400x400')
 
 ```c
 // H5Fint.c: H5F_open()
@@ -60,7 +70,6 @@ if (use_file_locking)
     if (H5FD_lock(lf, (hbool_t)((flags & H5F_ACC_RDWR) ? TRUE : FALSE)) < 0) {
         //...
     }
-
 
 /* Need to set status_flags in the superblock if the driver has a 'lock' method */
 if (drvr->lock)
@@ -106,7 +115,7 @@ if (flush) {
 
 ### 手动清除标记
 
-如果程序运行时发现崩溃或者断电，超级块中的标记位将不会被清除。此时，将无法读写该文件。
+如果程序运行时发生崩溃或者断电，超级块中的标记位将不会被清除。此时，将无法读写该文件。
 
 HDF5提供了命令行工具h5clear，用于清除超级块中的标记，代码片段如下所示：
 
