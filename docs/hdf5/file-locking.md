@@ -138,3 +138,4 @@ if (H5P_exist_plist(a_plist, H5F_ACS_CLEAR_STATUS_FLAGS_NAME) > 0) {
 
 [2] File Locking under SWMR, https://portal.hdfgroup.org/display/HDF5/File+Locking+under+SWMR
 
+[3] How to disable file locking - flock, https://portal.hdfgroup.org/display/knowledge/How+to+disable+file+locking+-+flock
