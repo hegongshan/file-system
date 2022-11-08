@@ -6,7 +6,7 @@
 
 其中，File Consistency Flags占一个字节，每个比特的说明如下所示：
 
-![](../img/hdf5-superblock-file-consistency-flags.png ':size=350x180')
+![](../img/hdf5-superblock-file-consistency-flags.png ':size=500x180')
 
 ### 判断是否要加锁
 

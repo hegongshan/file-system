@@ -6,7 +6,7 @@
         * [设备分区](/device/disk-partition.md)
         * [RAID](/device/raid.md)
         * [LVM](/device/lvm.md)
-        * [dd](/devicedd.md)
+        * [dd](/device/dd.md)
 * 文件系统基础
     * [文件与目录管理](/basic/file-and-directory-manage.md)
     * 文件系统操作
