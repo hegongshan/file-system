@@ -32,7 +32,9 @@
   * 常用命令
     * [文件系统的使用](/file-system-usage.md)
 * [分布式文件系统](/distributed-file-system.md)
-  * [网络文件系统](/network-file-system.md)
+    * 文件共享
+        * [网络文件系统](/network-file-system.md)
+        * [Samba](/samba.md)
   * 可靠性
     * [复制](/replication.md)
     * 纠删码
