@@ -9,6 +9,8 @@
         * [dd](/device/dd.md)
 * 文件系统基础
     * [文件与目录管理](/basic/file-and-directory-manage.md)
+    * 删除文件
+        * [粉碎文件](/basic/shred.md)
     * 文件系统操作
         * [元数据操作](/basic/posix-metadata-operation.md)
         * [数据操作](/basic/posix-data-operation.md)
