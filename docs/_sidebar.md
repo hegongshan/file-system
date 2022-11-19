@@ -22,10 +22,11 @@
         * [保护位](/basic/rwx.md)
         * [访问属性列表](/basic/acl.md)
 * 本地文件系统
-  * 内核文件系统
-    * e2fsprog
-      * [mklost+found](/mklost+found.md)
-    * [Ext2](/file-system-ext2.md) 
+    * 内核文件系统
+        * [Ext2](/local/ext2.md) 
+        * e2fsprog
+            * [mklost+found](/local/e2fsprogs/mklost+found.md)
+            * [tune2fs](/local/e2fsprogs/tune2fs.md)
   * 用户态文件系统
     * [FUSE](/fuse.md)
   * 文件系统Lab
