@@ -48,6 +48,8 @@
   * [数据同步](/sync/README.md)
     * [rsync](/sync/rsync.md)
 * 开源系统
+    * Hadoop
+        * [安装](/hadoop/install.md)
     * Ceph
         * [介绍](/ceph/intro.md)
         * [安装CephFS](/ceph/install.md)
