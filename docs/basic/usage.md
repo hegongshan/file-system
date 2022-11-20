@@ -28,9 +28,3 @@ vim /etc/fstab
 ```bash
 mkswap <device>
 ```
-
-
-
-参考文献
-
-[1] 刘遄,《Linux就该这样学》,人民邮电出版社
