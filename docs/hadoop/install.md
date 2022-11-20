@@ -1,4 +1,4 @@
-以当前的最新版`Hadoop 3.3.4`为例：
+下面以`Hadoop 3.3.4`为例：
 
 ### 安装Hadoop
 
@@ -10,7 +10,7 @@
 $ apt install -y openjdk-8-jdk
 ```
 
-* 安装ssh
+* 安装ssh和管理工具pdsh
 
 ```bash
 $ apt install -y ssh pdsh
@@ -125,7 +125,7 @@ $ bin/hdfs dfs -mkdir /user
 $ bin/hdfs dfs -mkdir /user/root
 ```
 
-.将输入文件拷贝到分布式文件系统中
+2.将输入文件拷贝到分布式文件系统中
 
 ```bash
 $ bin/hdfs dfs -mkdir input
@@ -155,14 +155,14 @@ $ bin/hdfs dfs -cat output/*
 1	dfs.replication
 ```
 
-5.停止HDFS
+5.删除输出结果
 
 ```bash
 $ bin/hdfs dfs -rm -r -f ouput
 Deleted output
 ```
 
-###配置YARN
+### 配置YARN
 
 1.修改配置文件
 

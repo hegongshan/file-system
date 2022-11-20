@@ -94,10 +94,9 @@
 * 测试工具
     * [FIO](/benchmark/fio.md)
     * [Filebench](/benchmark/filebench.md)
-    * [mdtest](/benchmark/mdtest.md)
-* 重要会议
-    * [FAST](/venue/fast.md)
-    * [SOSP](/venue/sosp.md)
-    * [OSDI](/venue/osdi.md)
-    * [ATC](/venue/atc.md)
-    * [SC](/venue/sc.md)
+    * [mdtest](/benchmark/mdtest.md) 
+* 附录
+    * [相关书籍](/appendix/book.md)
+    * 相关会议
+        * [存储系统会议](/appendix/venue/storage.md)
+        * [数据库系统会议](/appendix/venue/db.md)
