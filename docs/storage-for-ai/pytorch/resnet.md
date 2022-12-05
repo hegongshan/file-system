@@ -1,6 +1,6 @@
 实现ResNet50：
 
-```python3
+```python
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
