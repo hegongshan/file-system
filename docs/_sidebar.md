@@ -64,9 +64,7 @@
 * 数据压缩
   * [gzip](/compression/gzip.md)
   * [稀疏矩阵](/compression/sparse-matrix.md)
-* Storage for AI
-  * [DNN训练流程](/storage-for-ai/README.md)
-  * [GNN](/storage-for-ai/nn/GNN.md)
+* 数据存储格式
   * HDF5
     * [介绍](/hdf5/introduction.md)
     * [安装HDF5](/hdf5/install.md)
@@ -83,6 +81,9 @@
     * 测试工具
       * [h5perf](/hdf5/tool/h5perf.md)
       * [h5bench](/hdf5/h5bench.md)
+* Storage for AI
+  * [DNN训练流程](/storage-for-ai/README.md)
+  * [GNN](/storage-for-ai/nn/GNN.md)
   * TensorFlow
     * [tf.data](/storage-for-ai/tensorflow/data.md)
     * [TFRecord格式](/storage-for-ai/tensorflow/TFRecord.md)
@@ -91,6 +92,7 @@
     * [Model Garden](/storage-for-ai/tensorflow/model-garden.md)
   * PyTorch
     * [Dataloader](/storage-for-ai/pytorch/dataloader.md)
+    * [训练ResNet](/storage-for-ai/pytorch/resnet.md)
 * 测试工具
   * [FIO](/benchmark/fio.md)
   * [Filebench](/benchmark/filebench.md)
