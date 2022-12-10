@@ -93,6 +93,7 @@
   * PyTorch
     * [Dataloader](/storage-for-ai/pytorch/dataloader.md)
     * [训练ResNet](/storage-for-ai/pytorch/resnet.md)
+  * [论文阅读](/storage-for-ai/paper/)
 * 测试工具
   * [FIO](/benchmark/fio.md)
   * [Filebench](/benchmark/filebench.md)
