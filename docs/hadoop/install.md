@@ -24,11 +24,11 @@ $ tar -zxf hadoop-3.3.4.tar.gz
 $ cd hadoop-3.3.4/
 ```
 
-3.修改环境变量文件etc/hadoop/hadoop-env.sh
+3.修改环境变量文件`etc/hadoop/hadoop-env.sh`
 
 ```bash
 # 设置JAVA_HOME
-export JAVA_HOME=/usr
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ```
 
 ### 配置HDFS
