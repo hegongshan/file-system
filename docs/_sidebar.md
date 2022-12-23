@@ -50,6 +50,7 @@
 * 开源系统
   * Hadoop
     * [安装](/hadoop/install.md)
+    * [HDFS配置](/hadoop/hdfs-conf.md)
   * Ceph
     * [介绍](/ceph/intro.md)
     * [安装CephFS](/ceph/install.md)
