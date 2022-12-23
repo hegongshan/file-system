@@ -51,6 +51,7 @@
   * Hadoop
     * [安装](/hadoop/install.md)
     * [HDFS配置](/hadoop/hdfs-conf.md)
+    * [MapReduce示例](/hadoop/mapreduce.md)
   * Ceph
     * [介绍](/ceph/intro.md)
     * [安装CephFS](/ceph/install.md)
