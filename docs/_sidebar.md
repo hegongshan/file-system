@@ -95,7 +95,6 @@
     * [Dataloader](/storage-for-ai/pytorch/dataloader.md)
     * [训练ResNet](/storage-for-ai/pytorch/resnet.md)
   * [论文阅读](/storage-for-ai/paper/)
-    * [FAST'20 Quiver](/storage-for-ai/paper/fast20-quiver.md)
 * 测试工具
   * [FIO](/benchmark/fio.md)
   * [Filebench](/benchmark/filebench.md)
