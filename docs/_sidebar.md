@@ -49,9 +49,12 @@
     * [rsync](/sync/rsync.md)
 * 开源系统
   * Hadoop
-    * [安装](/hadoop/install.md)
+    * 安装
+      * [单节点集群](/hadoop/install.md)
+    * HDFS文件系统操作
+      * [HDFS Shell操作](/hadoop/hdfs-shell.md)
+      * [HDFS API](/hadoop/hdfs-api.md)
     * [HDFS配置](/hadoop/hdfs-conf.md)
-    * [HDFS文件系统命令](/hadoop/hdfs-shell.md)
     * [MapReduce示例](/hadoop/mapreduce.md)
   * Ceph
     * [介绍](/ceph/intro.md)
