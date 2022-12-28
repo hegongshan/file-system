@@ -56,6 +56,7 @@
       * [HDFS API](/hadoop/hdfs-api.md)
     * [HDFS配置](/hadoop/hdfs-conf.md)
     * [MapReduce示例](/hadoop/mapreduce.md)
+    * [测试工具](/hadoop/hdfs-bench.md)
   * Ceph
     * [介绍](/ceph/intro.md)
     * [安装CephFS](/ceph/install.md)
