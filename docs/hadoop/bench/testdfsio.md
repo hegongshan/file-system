@@ -1,31 +1,42 @@
-### HDFS基准测试
-
-#### Benchmark
-
-```bash
-$ hadoop jar ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-*-tests.jar
-```
-
-问题：执行上述命令后，可能会出现找不到junit的TestCase类：
-
-```bash
-java.lang.NoClassDefFoundError: junit/framework/TestCase
-Caused by: java.lang.ClassNotFoundException: junit.framework.TestCase
-```
-
-解决办法：将`junit-*.jar`复制到目录`${HADOOP_HOME}/share/hadoop/common/lib/`中。例如：
-
-```bash
-cp ${HADOOP_HOME}/share/hadoop/tools/lib/junit-*.jar ${HADOOP_HOME}/share/hadoop/common/lib/
-```
-
-#### TestDFSIO
-
 TestDFSIO测试包含的选项如下所示：
 
 ```bash
 Usage: TestDFSIO [genericOptions] -read [-random | -backward | -skip [-skipSize Size]] | -write | -append | -truncate | -clean [-compression codecClassName] [-nrFiles N] [-size Size[B|KB|MB|GB|TB]] [-resFile resultFileName] [-bufferSize Bytes] [-storagePolicy storagePolicyName] [-erasureCodePolicy erasureCodePolicyName]
 ```
+
+测试的根目录默认为`/benchmarks/TestDFSIO`，该值可以通过配置`test.build.data`指定。
+
+### 选项说明
+
+测试类型：
+
+* `-read`：读测试，默认为顺序读
+
+1. `-random`：随机读，随机选择一个位置进行读取
+
+2. `-backward`：反向读，反向读取文件
+
+3. `-skip [-skipSize Size]`：跳跃读，每次读取之后，跳过特定字节
+
+* `-write`：写测试
+
+* `-append`：追加测试
+
+* `-truncate`：截断测试
+
+* `-clean`：清除测试生成的所有文件
+
+测试选项：
+
+* `-nrFiles N`：指定需要读写的文件数量，默认为1个。
+
+* `-size Size[B|KB|MB|GB|TB]`：指定每个文件的大小，默认为1MB。
+
+* `-resFile`：指定本地存放测试结果的文件名，默认为`TestDFSIO_results.log`
+
+* `-bufferSize Bytes`：指定读写缓冲区的大小，默认为1000000字节。
+
+### 执行测试
 
 * 写测试：
 
@@ -47,7 +58,7 @@ $ hadoop jar ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-client-jobcl
 2022-12-28 16:23:19,941 INFO fs.TestDFSIO:   IO rate std deviation: 4.77
 2022-12-28 16:23:19,941 INFO fs.TestDFSIO:      Test exec time sec: 21.85
 ```
-其中，`Throughput`表示测试的总吞吐率，`Average IO rate`表示所有Mapper执行的平均速度，`IO rate std deviation`表示所有Mapper执行速度的标准差，`Test exec time`表示任务执行的总时间。
+其中，`Throughput`表示测试的总吞吐率（mb/sec），`Average IO rate`表示每个map任务的平均I/O速度（mb/sec），`IO rate std deviation`表示I/O速度的标准差，`Test exec time`表示程序执行的总时间。
 
 上述评价指标的计算过程如下所示：
 $$

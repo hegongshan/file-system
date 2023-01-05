@@ -56,7 +56,9 @@
       * [HDFS API](/hadoop/hdfs-api.md)
     * [HDFS配置](/hadoop/hdfs-conf.md)
     * [MapReduce示例](/hadoop/mapreduce.md)
-    * [测试工具](/hadoop/hdfs-bench.md)
+    * 测试工具
+      * [使用说明](/hadoop/bench/usage.md)
+      * [TestDFSIO](/hadoop/bench/testdfsio.md)
   * Ceph
     * [介绍](/ceph/intro.md)
     * [安装CephFS](/ceph/install.md)
@@ -66,6 +68,8 @@
     * 测试工具
       * [RADOS bench](/ceph/rados-bench.md)
       * [RBD bench](/ceph/rbd-bench.md)
+  * 突发缓存
+    * [BeeOND](/burst-buffer/beeond.md)
 * 并行处理
   * [OpenMPI](/mpi/install.md)
 * 数据压缩
