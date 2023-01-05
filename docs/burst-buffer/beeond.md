@@ -17,7 +17,7 @@ $ pdsh -R ssh -w node14,node27 yum install -y pdsh
 $ pdsh -R ssh -w node14,node27 wget -O /etc/yum.repos.d/beegfs-rhel7.repo https://www.beegfs.io/release/beegfs_7.2.8/dists/beegfs-rhel7.repo
 ```
 
-###安装BeeOND
+### 安装BeeOND
 
 ```bash
 $ pdsh -R ssh -w node14,node27 yum install -y beeond
@@ -70,7 +70,7 @@ EOF
 $ beeond start -n nodefile -d /data/beeond -c /mnt/beeond -f /etc/beegfs -P
 ```
 
-注意，在启动时，必须指定`-f path`。否则，即使我们已经设置了`connAuthFile`或`connDisableAuthentication`，仍然会产生`No connAuthFile configured`错误。
+注意，在启动时，必须指定`-f PATH`。否则，即使我们已经设置了`connAuthFile`或`connDisableAuthentication`，仍然会产生`No connAuthFile configured`错误。
 
 ### 关闭BeeOND
 
