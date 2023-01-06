@@ -69,6 +69,7 @@
       * [RADOS bench](/ceph/rados-bench.md)
       * [RBD bench](/ceph/rbd-bench.md)
   * 突发缓存
+    * [介绍](/burst-buffer/intro.md)
     * [BeeOND](/burst-buffer/beeond.md)
 * 并行处理
   * [OpenMPI](/mpi/install.md)

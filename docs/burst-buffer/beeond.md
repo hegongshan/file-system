@@ -1,4 +1,4 @@
-BeeOND (BeeGFS ON Demand) 是一个Burst Buffer文件系统，其架构如下图所示：
+BeeOND (*Bee*GFS *On* *D*emand) 是一个Burst Buffer文件系统，其架构如下图所示：
 
 ![](../img/beeond-overview.png)
 
