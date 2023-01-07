@@ -109,6 +109,7 @@
 * 测试工具
   * [FIO](/benchmark/fio.md)
   * [Filebench](/benchmark/filebench.md)
+  * [IOR](/benchmark/ior.md)
   * [mdtest](/benchmark/mdtest.md) 
 * 附录
   * [相关书籍](/appendix/book.md)
