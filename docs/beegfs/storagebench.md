@@ -1,4 +1,4 @@
-BeeGFS内置了一个测试存储性能Benchmark——StorageBench：
+BeeGFS内置了一个测试存储性能的测试工具StorageBench：
 
 
 ```bash
