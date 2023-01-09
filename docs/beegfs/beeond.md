@@ -50,7 +50,7 @@ $ pdcp -R ssh -w node14,node27 /etc/beegfs/connauthfile /etc/beegfs/connauthfile
 3.对于集群中的每个节点，修改所有服务的配置文件，指定连接认证文件的位置`connAuthFile`
 
 ```bash
-$ pdsh -R ssh -w node14,node27 "sed -in 's/^connAuthFile.*$/connAuthFile=\/etc\/beegfs\/connauthfile/g' /etc/beegfs/beegfs-*.conf"
+$ pdsh -R ssh -w node14,node27 "sed -i 's/^\(connAuthFile.*=\).*$/\1 \/etc\/beegfs\/connauthfile/' /etc/beegfs/beegfs-*.conf"
 ```
 
 ### 运行BeeOND
