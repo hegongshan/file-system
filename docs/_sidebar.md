@@ -70,7 +70,9 @@
       * [RBD bench](/ceph/rbd-bench.md)
   * 突发缓存
     * [介绍](/burst-buffer/intro.md)
-    * [BeeOND](/burst-buffer/beeond.md)
+  * BeeGFS
+    * [StorageBench](/beegfs/storagebench.md)
+    * [BeeOND](/beegfs/beeond.md)
 * 并行处理
   * [OpenMPI](/mpi/install.md)
 * 数据压缩
@@ -108,9 +110,9 @@
   * [论文阅读](/storage-for-ai/paper/)
 * 测试工具
   * [FIO](/benchmark/fio.md)
-  * [Filebench](/benchmark/filebench.md)
   * [IOR](/benchmark/ior.md)
   * [mdtest](/benchmark/mdtest.md) 
+  * [Filebench](/benchmark/filebench.md)
 * 附录
   * [相关书籍](/appendix/book.md)
   * 相关会议
