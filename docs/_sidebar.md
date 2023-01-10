@@ -73,6 +73,7 @@
   * BeeGFS
     * [StorageBench](/beegfs/storagebench.md)
     * [BeeOND](/beegfs/beeond.md)
+    * [论文阅读](/beegfs/paper/list.md)
 * 并行处理
   * [OpenMPI](/mpi/install.md)
 * 数据压缩
