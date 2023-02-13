@@ -47,6 +47,8 @@
   * 数据同步
     * [同步原理](/sync/README.md)
     * [rsync](/sync/rsync.md)
+  * Lab：MIT 6.824 2013 yfs
+    * [Lab1: Lock Server](/distributed/yfs/lab1-lock-server.md)
 * 开源系统
   * Hadoop
     * 安装
@@ -73,7 +75,7 @@
   * BeeGFS
     * [StorageBench](/beegfs/storagebench.md)
     * [BeeOND](/beegfs/beeond.md)
-    * [论文阅读](/beegfs/paper/list.md)
+    * [论文阅读](/beegfs/paper/README.md)
 * 并行处理
   * [OpenMPI](/mpi/install.md)
 * 数据压缩
