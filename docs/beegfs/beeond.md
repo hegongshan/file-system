@@ -7,20 +7,21 @@ BeeOND (*Bee*GFS *On* *D*emand) 是一个Burst Buffer文件系统，其架构如
 1.安装pdsh
 
 ```bash
-$ pdsh -R ssh -w node14,node27 yum install -y epel-release
-$ pdsh -R ssh -w node14,node27 yum install -y pdsh
+$ apt install -y pdsh
 ```
 
-2.下载包仓库文件，以`BeeGFS v7.2.8`为例
+2.下载包仓库文件，以`BeeGFS v7.3.2`为例：
 
 ```bash
-$ pdsh -R ssh -w node14,node27 wget -O /etc/yum.repos.d/beegfs-rhel7.repo https://www.beegfs.io/release/beegfs_7.2.8/dists/beegfs-rhel7.repo
+$ wget -O /etc/apt/sources.list.d/beegfs-focal.list https://www.beegfs.io/release/beegfs_7.3.2/dists/beegfs-focal.list
+$ wget -q https://www.beegfs.io/release/beegfs_7.3.2/gpg/GPG-KEY-beegfs -O- | apt-key add -
+$ apt update
 ```
 
 ### 安装BeeOND
 
 ```bash
-$ pdsh -R ssh -w node14,node27 yum install -y beeond
+$ pdsh -R ssh -w node14,node27 apt install -y beeond
 ```
 
 此时，若启动BeeOND，将会产生如下错误：
@@ -85,3 +86,5 @@ $ beeond stop -n nodefile -L -d
 1. https://doc.beegfs.io/latest/advanced_topics/beeond.html
 
 1. https://doc.beegfs.io/latest/advanced_topics/authentication.html
+
+1. https://doc.beegfs.io/latest/advanced_topics/manual_installation.html
