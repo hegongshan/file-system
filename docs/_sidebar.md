@@ -115,6 +115,7 @@
   * [FIO](/benchmark/fio.md)
   * [IOR](/benchmark/ior.md)
   * [mdtest](/benchmark/mdtest.md) 
+  * [IO500](/benchmark/io500.md)
   * [Filebench](/benchmark/filebench.md)
 * 附录
   * [相关书籍](/appendix/book.md)
