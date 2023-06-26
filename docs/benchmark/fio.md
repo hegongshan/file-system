@@ -123,12 +123,14 @@ group_reporting
 [randwrite]
 description="Random Write"
 rw=randwrite
+size=1G
 bs=4K
 iodepth=16
 
 [seqwrite]
 description="Sequential Write"
 rw=write
+size=1G
 bs=4M
 iodepth=1
 ```

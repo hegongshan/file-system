@@ -1,4 +1,4 @@
-数据带宽测试之IOR
+IOR（Interleave Or Random）是一个数据带宽测试工具。
 
 ### 安装IOR
 
