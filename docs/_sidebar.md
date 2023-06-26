@@ -112,6 +112,7 @@
     * [训练ResNet](/storage-for-ai/pytorch/resnet.md)
   * [论文阅读](/storage-for-ai/paper/)
 * 测试工具
+  * [dstat](/benchmark/dstat.md)
   * [FIO](/benchmark/fio.md)
   * [IOR](/benchmark/ior.md)
   * [mdtest](/benchmark/mdtest.md) 

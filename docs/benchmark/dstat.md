@@ -1,4 +1,26 @@
-dstat
+dstat是一个统计系统资源的通用工具。
+
+### 说明
+
+```bash
+dstat [options..] [delay [count]]
+```
+
+和I/O相关的选项有：
+
+* --aio: 统计aio信息
+
+* --fs, --filesystem: 统计文件系统的信息
+
+* --noupdate：不要输出中间结果
+
+* --output file：以CSV格式，将结果输出到file中
+
+delay：每次更新的间隔时间（单位为秒），默认为1秒
+
+count：输出多少次，默认为无限次
+
+### 测试
 
 ```bash
 $ dstat --fs --noupdate 2 2
