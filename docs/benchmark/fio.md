@@ -97,9 +97,13 @@ randrw: 混合随机读写
 * `bs`和`blocksize`：设置块大小，默认的单位为字节，大小为4096。
 * `runtime=time`：设置运行时间，默认的单位为秒。
 * `ramp_time=time`：设置预热时间。
+* `time_based`：即使文件已经读取或者写入完成，fio会继续执行测试，直到时间耗尽
 * `size=int`：设置读写的大小
 * `thread`：默认情况下，fio使用fork创建任务。如果设置了thread，则使用POSIX中的Thread创建任务。
 * `group_reporting`：默认情况下，fio按照任务输出最终的测试结果。如果设置了`group_reporting`，则会按组输出最终的结果。
+* `exec_prerun=str`：设置在测试开始前需要执行的命令
+* `exec_postrun=str`：设置在测试完成后需要执行的命令
+* `output=filename`：设置输出文件
 
 #### 测试实例
 
