@@ -94,6 +94,10 @@ randwrite: 随机写
 randrw: 混合随机读写
 ```
 
+* `direct=bool`：是否使用直接I/O，默认为false。
+* `buffered=bool`：是否使用缓冲I/O，默认为true。
+* `iodepth=int`：设置并行执行的I/O数量。
+
 * `bs`和`blocksize`：设置块大小，默认的单位为字节，大小为4096。
 * `runtime=time`：设置运行时间，默认的单位为秒。
 * `ramp_time=time`：设置预热时间。
@@ -104,6 +108,8 @@ randrw: 混合随机读写
 * `exec_prerun=str`：设置在测试开始前需要执行的命令
 * `exec_postrun=str`：设置在测试完成后需要执行的命令
 * `output=filename`：设置输出文件
+* `loops=int`：重复执行指定的次数。默认为1次，即不重复执行。
+* `numjobs=int`：设置任务数量，默认为1个任务。
 
 #### 测试实例
 
