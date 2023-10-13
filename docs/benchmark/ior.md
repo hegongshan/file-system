@@ -37,21 +37,21 @@ make install
 
 ### 常用选项
 
--i *N*: 重复几次试验。
+* -i *N*: 重复几次试验。
 
--N *N*: numTasks
+* -N *N*: numTasks
 
 > number of tasks that should participate in the test. 0 denotes all tasks. (default: 0)
 
--s *N*: segmentCount
+* -s *N*: segmentCount
 
 > number of segments in file, where a segment is a contiguous chunk of data accessed by multiple clients each writing/reading their own contiguous data (blocks) (default: 1).
 
--b *N*: blockSize – contiguous bytes to write per task (e.g.: 8, 4k, 2m, 1g)
+* -b *N*: blockSize – contiguous bytes to write per task (e.g.: 8, 4k, 2m, 1g)
 
 > size (in bytes) of a contiguous chunk of data accessed by a single client. It is comprised of one or more transfers (default: 1048576)
 
--t *N*: transferSize – size of transfer in bytes (e.g.: 8, 4k, 2m, 1g)
+* -t *N*: transferSize – size of transfer in bytes (e.g.: 8, 4k, 2m, 1g)
 
 > size (in bytes) of a single data buffer to be transferred in a single I/O call (default: 262144)
 
@@ -64,11 +64,17 @@ $$
 \mathrm{aggregate\ filesize}=64 \times 16 \times 16MB = 16GB
 $$
 
+* -x：singleXferAttempt – do not retry transfer if incomplete
+* -w：writeFile – write file
+* -r：readFile – read existing file
+* -z：randomOffset – access is to random, not sequential, offsets within a file
+* -F：filePerProc – file-per-process
+
 ### 测试示例
 
 1.shared file: All processes access a single file, 默认情况下使用该访问模式。
 
-2.file-per-process: Each process is accessing its own file，需要添加`-F`选项。
+2.file-per-process: Each process is accessing its own file。
 
 3.顺序访问模式和随机访问模式（sequential  and random access pattern）
 
@@ -88,13 +94,13 @@ mpirun -n 16 ./ior -t 1m -b 16m -s 256
 2.shared file + random access pattern
 
 ```shell
-mpirun -n 16 ./ior -t 1m -b 16m -s 256 -F
+mpirun -n 16 ./ior -t 1m -b 16m -s 256 -z
 ```
 
 3.file-per-process: 
 
 ```shell
-mpirun -n 16 ./ior -t 1m -b 16m -s 256 -z
+mpirun -n 16 ./ior -t 1m -b 16m -s 256 -F
 ```
 
 ### 参考资料
