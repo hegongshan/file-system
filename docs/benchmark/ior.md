@@ -69,6 +69,7 @@ $$
 * -r：readFile – read existing file
 * -z：randomOffset – access is to random, not sequential, offsets within a file
 * -F：filePerProc – file-per-process
+* -o S：testFile – full name for test
 
 ### 测试示例
 
