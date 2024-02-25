@@ -46,7 +46,7 @@
   * 数据同步
     * [同步原理](/sync/README.md)
     * [rsync](/sync/rsync.md)
-  * Lab：MIT 6.824 2013 yfs
+  * Lab：MIT 6.824 2012 yfs
     * [Lab1: Lock Server](/distributed/yfs/lab1-lock-server.md)
 * 开源系统
   * Hadoop
