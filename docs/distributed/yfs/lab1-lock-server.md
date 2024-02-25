@@ -24,11 +24,9 @@ rpc/rpc.cc:98:32: error: ‘getpid’ was not declared in this scope; did you me
 
 ![](../../img/yfs-lab1-lock-server-rpc.png)
 
+### 第一步: 假定完美网络，实现lock_server
 
-
-#### Step One: 实现lock_server（假定完美网络）
-
-##### 使用RPC系统
+#### 使用RPC系统
 
 在`lock_smain.cc`中，向RPC服务器注册RPC处理程序
 
@@ -37,7 +35,7 @@ server.reg(lock_protocol::acquire, &ls, &lock_server::acquire);
 server.reg(lock_protocol::release, &ls, &lock_server::release);
 ```
 
-##### 实现锁客户端
+#### 实现锁客户端
 
 参考stat调用，实现`acquire`和`release`调用
 
@@ -57,7 +55,7 @@ lock_client::release(lock_protocol::lockid_t lid)
 }
 ```
 
-##### 处理多线程并发
+#### 处理多线程并发
 
 * 使用C++11提供的mutex和condition_variable
 
