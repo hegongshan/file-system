@@ -30,9 +30,8 @@
       * [tune2fs](/local/e2fsprogs/tune2fs.md)
   * 用户态文件系统
     * [FUSE](/local/fuse.md)
-  * 文件系统Lab
-    * [Lab1: NYU CS202 ls](/local/nyu-cs202-lab-ls.md)
-    * [Lab2: NYU CS202 File System](/local/nyu-cs202-lab-file-system.md)
+  * 动手实践
+    * [实现简单的用户态文件系统](/local/lab.md)
 * 分布式文件系统
   * 文件共享
     * [网络文件系统](/distributed/nfs.md)
