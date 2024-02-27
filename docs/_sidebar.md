@@ -117,6 +117,8 @@
   * [mdtest](/benchmark/mdtest.md) 
   * [IO500](/benchmark/io500.md)
   * [Filebench](/benchmark/filebench.md)
+* 代码实现中可能涉及的操作
+  * [读写环境变量](/code/env.md)
 * 附录
   * [相关书籍](/appendix/book.md)
   * 相关会议
