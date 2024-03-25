@@ -13,8 +13,10 @@
   * 删除文件
     * [粉碎文件](/basic/shred.md)
   * 文件系统操作
-    * [元数据操作](/basic/posix-metadata-operation.md)
-    * [数据操作](/basic/posix-data-operation.md)
+    * [POSIX接口及其对应的Shell命令](/basic/posix.md)
+    * 元数据操作
+    * 数据操作
+    * [truncate](/basic/truncate.md)
   * 文件属性
     * [基本属性](/basic/attr.md)
     * [扩展属性](/basic/xattr.md)
