@@ -5,11 +5,11 @@ USENIX Conference on File and Storage Technologies (FAST) 创办于2002年，是
 
 1.打开会议主页，找到Front Matter
 
-![](../img/fast-front-matter.png)
+![](../../img/fast-front-matter.png)
 
 2.点击【Message from the Program Co-Chairs】
 
-![](../img/fast-submitted-acceptance-rate.png)
+![](../../img/fast-submitted-acceptance-rate.png)
 
 3.自2012年以来的投稿和录用情况统计：
 
@@ -46,7 +46,7 @@ USENIX Symposium on Operating Systems Design and Implementation (OSDI) 创办于
 | 2016 |    260    |    47    |       18%       |
 | 2014 |    228    |    42    |       18%       |
 
-![](../img/osdi-submitted-acceptance-rate.png)
+![](../../img/osdi-submitted-acceptance-rate.png)
 
 注：上面图片来自于https://www.usenix.org/sites/default/files/osdi14_message.pdf
 
