@@ -123,6 +123,7 @@
   * [读写环境变量](/code/env.md)
 * 附录
   * [相关书籍](/appendix/book.md)
+  * [相关Lab](/appendix/lab.md)
   * 相关会议
     * [存储系统会议](/appendix/venue/storage.md)
     * [数据库系统会议](/appendix/venue/db.md)
