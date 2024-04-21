@@ -1,4 +1,6 @@
-### 存储系统相关会议
+本文整理了存储系统相关的A、B、C类以及其他会议。
+
+### A类会议
 
 #### FAST
 USENIX Conference on File and Storage Technologies (FAST) 创办于2002年，是文件系统领域的顶级会议，通常在每年的2月下旬举办。
@@ -94,3 +96,45 @@ SC（The International Conference for High Performance Computing, Networking, St
 官网：https://supercomputing.org
 
 录用情况：https://dl.acm.org/doi/proceedings/10.1145/3458817#acceptance-rates
+
+#### EuroSys
+
+EuroSys（European Conference on Computer Systems）创建于2006年，通常在每年的4月份左右举办。
+
+官网：https://www.eurosys.org
+
+### B类会议
+
+#### MSST
+
+MSST（International Conference on Massive Storage Systems and Technology）创建于1974年，通常在每年的5月份左右举办。
+
+官网：https://www.msstconference.org
+
+#### CLUSTER
+
+CLUSTER（IEEE International Conference on Cluster Computing）创建于1999年，通常在每年的9月份左右举办。
+
+####ICPP
+
+ICPP（International Conference on Parallel Processing）创建于1972年，通常在每年的8月份左右举办。
+
+#### IPDPS
+
+IPDPS（International Parallel and Distributed Processing Symposium）创建于1986年，通常在每年的5月份左右举办。
+
+官网：https://www.ipdps.org
+
+###C类及其他会议
+
+#### SYSTOR
+
+SYSTOR（ACM International Systems and Storage Conference）创建于2007年，通常在每年的6月份左右举办。
+
+官网：https://www.systor.org
+
+#### HotStorage
+
+HotStorage（ACM Workshop on Hot Topics in Storage and File Systems）创建于2009年，通常在每年的7月份左右举办。值得一提的是，其不在CCF的推荐列表中。
+
+官网：https://www.hotstorage.org
